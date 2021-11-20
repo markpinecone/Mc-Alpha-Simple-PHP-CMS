@@ -35,7 +35,7 @@ chdir($_SERVER['DOCUMENT_ROOT']);
                     <a class="nav-link" href="#">Page2</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/includes/login.inc.php">Login</a>
+                    <a class="nav-link" href="login.inc.php">Login</a>
                 </li>
 
             </ul>
