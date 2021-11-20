@@ -6,7 +6,16 @@
         "post-update-cmd": [
             "cp -R vendor/twbs/bootstrap/dist/* public/static/"
         ]
+    },
+    "autoload": {
+        "psr-4": {
+            "SimplePhpLogin\\": "src/"
+        },
+        "files": [
+            "config/config.php"
+        ]
     }
+
 }
 
 
