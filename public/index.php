@@ -1,8 +1,5 @@
 <?php
-include '../includes/header.inc.php';
+require '../includes/header.inc.php';
 ?>
-
 <h1>Public</h1>
-
-
-<?php include '../includes/footer.inc.php'; ?>
+<?php require '../includes/footer.inc.php'; ?>
