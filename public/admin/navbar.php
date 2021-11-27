@@ -17,7 +17,7 @@
                 if (!$_SESSION["LoggedIn"]) {
                     echo '<li> <a class="nav-link " href="/admin/Login.php">Login</a> </li>';
                 } else {
-                    '<li> <a class="nav-link " href="/admin/logout.php">Login</a> </li>';
+                    echo '<li> <a class="nav-link " href="/admin/logout.php">Logout</a> </li>';
                 }
                 ?>
                 <!-- <li>

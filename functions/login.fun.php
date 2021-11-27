@@ -1,4 +1,4 @@
-<!-- <?php
+<?php
 
 if (($_GET["user"] == "admin") && ($_GET["password"] == "111")) {
     $_SESSION["LoggedIn"] = true;
@@ -6,5 +6,9 @@ if (($_GET["user"] == "admin") && ($_GET["password"] == "111")) {
     header("Location: /admin/index.php");
     die();
 } else {
-    echo "<p style='color: red'>Lietotājvārds vai parole nav pareizi!</p>";
-} -->
+    if (isset($_GET["user"]) && (isset($_GET["password"]))) {
+        echo '<div class="alert alert-danger text-center" role="alert">
+                Incorrect username or password!
+            </div>';
+    }
+}
