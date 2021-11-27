@@ -1,5 +1,7 @@
 <?php
-include 'header.php';
+session_start();
+include '../header.php';
+include './navbar.php';
 // echo $_SERVER['DOCUMENT_ROOT']
 ?>
 
@@ -36,5 +38,5 @@ include 'header.php';
 
 
     <?php
-    include 'footer.php';
+    include '../footer.php';
     ?>

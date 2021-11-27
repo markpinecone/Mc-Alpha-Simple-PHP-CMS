@@ -1,6 +1,19 @@
 <?php
-include 'header.php';
+session_start();
+include '../header.php';
+include './navbar.php';
+require '../../functions/login.fun.php';
 // echo $_SERVER['DOCUMENT_ROOT']
+if (isset($_GET["submit"])) {
+    if (($_GET["user"] == "admin") && ($_GET["password"] == "111")) {
+        $_SESSION["LoggedIn"] = true;
+        $_SESSION["user"] = $_GET["user"];
+        header("Location: /admin/index.php");
+        die();
+    } else {
+        echo "<p style='color: red'>Lietotājvārds vai parole nav pareizi!</p>";
+    }
+}
 ?>
 
 <section class="vh-100">
@@ -10,16 +23,16 @@ include 'header.php';
                 <img src="https://mdbootstrap.com/img/Photos/new-templates/bootstrap-login-form/draw2.png" class="img-fluid" alt="Sample image">
             </div>
             <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-                <form>
+                <form method="get" action="">
 
                     <!-- Email input -->
                     <div class="form-outline mb-4">
-                        <input type="email" id="form3Example3" class="form-control form-control-lg" placeholder="Enter a valid email address" />
+                        <input type="user" name='user' id="form3Example3" class="form-control form-control-lg" placeholder="Enter a valid user name" />
                     </div>
 
                     <!-- Password input -->
                     <div class="form-outline mb-3">
-                        <input type="password" id="form3Example4" class="form-control form-control-lg" placeholder="Enter password" />
+                        <input type="password" name='password' id="form3Example4" class="form-control form-control-lg" placeholder="Enter password" />
                     </div>
                     <button type="submit" class="btn btn-primary align-middle">Log In</button>
 
@@ -30,7 +43,6 @@ include 'header.php';
 
 </section>
 
-
 <?php
-include 'footer.php';
+include '../footer.php';
 ?>
