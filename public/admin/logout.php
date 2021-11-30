@@ -1,2 +1,4 @@
 <?php
-require '../../functions/logout.fun.php';
+session_start();
+require_once '../../vendor/autoload.php';
+require INCLUDE_DIR . '/logout.inc.php';

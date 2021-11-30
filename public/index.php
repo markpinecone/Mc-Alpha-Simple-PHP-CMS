@@ -1,7 +1,8 @@
 <?php
 session_start();
-include 'header.php';
-include 'navbar.php';
+require_once '../vendor/autoload.php';
+require INCLUDE_DIR . '/header.inc.php';
+require INCLUDE_DIR . '/navbar.inc.php';
 ?>
 <h1>Public</h1>
-<?php include 'footer.php'; ?>
+<?php require INCLUDE_DIR . '/footer.inc.php'; ?>

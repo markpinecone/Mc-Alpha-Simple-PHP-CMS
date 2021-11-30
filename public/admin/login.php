@@ -1,8 +1,9 @@
 <?php
 session_start();
-include '../header.php';
-include './navbar.php';
-require '../../functions/login.fun.php';
+require_once '../../vendor/autoload.php';
+require INCLUDE_DIR . '/header.inc.php';
+require INCLUDE_DIR . '/navbar.inc.php';
+require INCLUDE_DIR . '/login.inc.php';
 ?>
 
 <section class="vh-100">
@@ -26,7 +27,7 @@ require '../../functions/login.fun.php';
                         <input type="password" name='password' id="form3Example4" class="form-control form-control-lg"
                             placeholder="Enter password" />
                     </div>
-                    <button type="submit" class="btn btn-primary align-middle">Log In</button>
+                    <button type="submit" value="Submit" name="submit" class="btn btn-primary align-middle">Log In</button>
 
                 </form>
             </div>
@@ -36,5 +37,5 @@ require '../../functions/login.fun.php';
 </section>
 
 <?php
-include '../footer.php';
+require INCLUDE_DIR . '/footer.inc.php';
 ?>

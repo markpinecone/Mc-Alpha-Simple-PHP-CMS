@@ -1,10 +1,8 @@
 <?php
 session_start();
-if (!$_SESSION["LoggedIn"]) {
-    header("Location: /admin/login.php");
-} else {
-    include '../header.php';
-    include 'navbar.php';
-    echo '<h1>Admin</h1>';
-    include '../footer.php';
-}
+require_once '../../vendor/autoload.php';
+require INCLUDE_DIR . '/header.inc.php';
+require INCLUDE_DIR . '/navbar.inc.php';
+?>
+<h1>Admin</h1>
+<?php require INCLUDE_DIR . '/footer.inc.php';
