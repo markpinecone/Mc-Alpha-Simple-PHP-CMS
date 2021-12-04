@@ -9,6 +9,7 @@
                 if (!isset($_SESSION["LoggedIn"])) {
 
                     echo '<li> <a class="nav-link " href="/login.php">Login</a> </li>';
+                    echo '<li> <a class="nav-link " href="/sign_up.php">Sign Up</a> </li>';
 
                 } else {
 

@@ -2,7 +2,7 @@
 session_start();
 require_once '../config/config.php';
 require INCLUDE_DIR . '/header.inc.php';
-require INCLUDE_DIR . '/navbar.pub.inc.php';
+require INCLUDE_DIR . '/navbar.inc.php';
 require INCLUDE_DIR . '/sign_up.inc.php';
 ?>
 <div id="form-container" class="center">
@@ -11,8 +11,18 @@ require INCLUDE_DIR . '/sign_up.inc.php';
 
             <!-- Email input -->
             <div class="">
-                <input type="user" name='user' id="" class=""
-                       placeholder="Enter user name"/>
+                <input type="email" name='email' id="" class=""
+                       placeholder="E-mail"/>
+            </div>
+            <br>
+            <div class="">
+                <input type="name" name='name' id="" class=""
+                       placeholder="First Name"/>
+            </div>
+            <br>
+            <div class="">
+                <input type="lastname" name='lastname' id="" class=""
+                       placeholder="Last Name"/>
             </div>
             <br>
 
@@ -27,7 +37,7 @@ require INCLUDE_DIR . '/sign_up.inc.php';
                        placeholder="Repeat password"/>
             </div>
             <br>
-            <button type="submit" value="Submit" name="submit" class="">Log In</button>
+            <button type="submit" value="Submit" name="submit" class="">Sign Up</button>
         </form>
     </div>
 </div>
