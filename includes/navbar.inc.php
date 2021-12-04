@@ -9,6 +9,7 @@
                 if (!$_SESSION["LoggedIn"]) {
 
                     echo '<li> <a class="nav-link " href="/admin/Login.php">Login</a> </li>';
+                    echo '<li> <a class="nav-link " href="/admin/sign_up.php">Sign Up</a> </li>';
 
                 } else {
 
@@ -16,8 +17,5 @@
                     echo '<li> <a class="nav-link " href="/admin/logout.php">Logout</a> </li>';
                 }
                 ?>
-                <!-- <li>
-                    <a class="nav-link " href="/admin/subscribe.php">Sign Up</a>
-                </li> -->
             </ul>
 </nav>
