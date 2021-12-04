@@ -1,6 +1,8 @@
 <?php
 session_start();
 if ($_SESSION["LoggedIn"]) {
-    $_SESSION["LoggedIn"] = false;
-    header("Location: /admin/login.php");
+    session_unset();
+    session_destroy();
+    session_write_close();
+    header("Location: /login.php");
 }
