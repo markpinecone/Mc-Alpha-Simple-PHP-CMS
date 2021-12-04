@@ -16,7 +16,7 @@ if (isset($_GET['submit'])) {
             header("Location: /index.php");
             die();
         } else {
-            if (isset($_GET["user"]) && (isset($_GET["password"]))) {
+            if (isset($_GET["email"]) && (isset($_GET["password"]))) {
                 echo '<div class="alert">
                     Incorrect username or password!
                 </div>';
