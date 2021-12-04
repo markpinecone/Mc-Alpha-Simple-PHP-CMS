@@ -28,12 +28,12 @@ require INCLUDE_DIR . '/sign_up.inc.php';
 
             <!-- Password input -->
             <div class="">
-                <input type="password" name='password' id="" class=""
+                <input type="password" name='pass' id="" class=""
                        placeholder="Enter password"/>
             </div>
             <br>
             <div class="">
-                <input type="password" name='repeat-password' id="" class=""
+                <input type="password" name='repeat-pass' id="" class=""
                        placeholder="Repeat password"/>
             </div>
             <br>

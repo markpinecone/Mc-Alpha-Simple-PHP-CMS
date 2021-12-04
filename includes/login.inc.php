@@ -4,7 +4,7 @@ require INCLUDE_DIR . '/dbh.inc.php';
 if (isset($_GET['submit'])) {
     $email = $_GET["email"];
     $password = $_GET["password"];
-    $userQuery = "SELECT * FROM Users WHERE email='{$email}'";
+    $userQuery = 'SELECT * FROM Users WHERE email="{$email}"';
     $queryResult = $conn->query($userQuery);
     $row = $queryResult->fetch_assoc();
 
