@@ -1,0 +1,50 @@
+#main-container {
+    margin: auto;
+    max-width: 1024px;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color: #111;
+}
+#form-container {
+    /*border: 3px solid #333;*/
+    border-radius: 15px;
+
+
+}
+#form {
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+    margin: 0 auto;
+
+}
+
+.center {
+    margin: auto;
+    width: 50%;
+
+    padding: 10px;
+}

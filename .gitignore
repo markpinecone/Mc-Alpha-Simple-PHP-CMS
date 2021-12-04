@@ -38,5 +38,5 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
-
+config/db_config.php
 # End of https://www.toptal.com/developers/gitignore/api/composer,macos

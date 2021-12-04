@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../vendor/autoload.php';
+require_once '../config/config.php';
 require INCLUDE_DIR . '/header.inc.php';
 require INCLUDE_DIR . '/navbar.inc.php';
 ?>

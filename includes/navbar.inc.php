@@ -1,12 +1,6 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <div class="container">
-        <a href="#" class="navbar-brand mb-0 h1">CMS-ADM</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav ms-auto text-center">
+<div id="main-container">
+<nav class="navbar">
+            <ul class="">
                 <li>
                     <a class="nav-link" href="../index.php">Public</a>
                 </li>
@@ -20,14 +14,10 @@
 
                     echo '<li><a class="nav-link" href="/admin/index.php">Admin</a></li>';
                     echo '<li> <a class="nav-link " href="/admin/logout.php">Logout</a> </li>';
-
-
                 }
                 ?>
                 <!-- <li>
                     <a class="nav-link " href="/admin/subscribe.php">Sign Up</a>
                 </li> -->
             </ul>
-        </div>
-    </div>
 </nav>
