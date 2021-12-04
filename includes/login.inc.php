@@ -11,7 +11,7 @@ if (isset($_GET['submit'])) {
     if ($queryResult->num_rows > 0) {
         if ($row['pass'] == $password) {
             $_SESSION["LoggedIn"] = true;
-            $_SESSION["user"] = $_GET["user"];
+            $_SESSION["email"] = $_GET["email"];
             $_SESSION['role'] = $row['role'];
             header("Location: /index.php");
             die();

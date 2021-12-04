@@ -1,5 +1,4 @@
 <?php
-session_start();
 if ($_SESSION["LoggedIn"]) {
     session_unset();
     session_destroy();
