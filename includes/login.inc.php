@@ -1,31 +1,25 @@
 <?php
 require INCLUDE_DIR . '/dbh.inc.php';
+require FUNCTIONS_DIR . '/login.func.php';
 
 if (isset($_GET['submit'])) {
     $email = $_GET["email"];
     $password = $_GET["password"];
-    $userQuery = "SELECT * FROM Users WHERE email='{$email}'";
-    $queryResult = $conn->query($userQuery);
-    $row = $queryResult->fetch_assoc();
-
-    if ($queryResult->num_rows > 0) {
-        if ($row['pass'] == $password) {
-            $_SESSION["LoggedIn"] = true;
-            $_SESSION["email"] = $_GET["email"];
-            $_SESSION['role'] = $row['role'];
-            header("Location: /index.php");
-            die();
-        } else {
-            if (isset($_GET["email"]) && (isset($_GET["password"]))) {
-                echo '<div class="alert">
-                    Incorrect username or password!
-                </div>';
-            }
-        }
+    $emailQuery = "SELECT * FROM Users WHERE email=?";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $emailQuery)) {
+        echo "SQL statement failed";
     } else {
-        echo '<div class="alert">User does not exist</div>';
+        mysqli_stmt_bind_param($stmt, "s", $email);
+        mysqli_stmt_execute($stmt);
+        $result = $stmt->get_result();
+        if ($result->num_rows == 0) {
+            echo '<div class="alert">User does not exist</div>';
+            die();
+        }else {
+            handleLoginRequest($result, $password);
+        }
     }
-
-    $conn->close();
+    $stmt->close();
 }
 

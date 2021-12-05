@@ -1,6 +1,6 @@
 <?php
 require INCLUDE_DIR . '/dbh.inc.php';
-require __DIR__ . '/edit_records.php';
+require __DIR__ . '/edit_records.func.php';
 
 $getAllRecordsQuery = "SELECT * FROM Users";
 $result = $conn->query($getAllRecordsQuery);
@@ -30,7 +30,8 @@ if ($result->num_rows > 0) {
             '<td>' . $row["lastname"] . '</td>' .
             '<td>' . $row["role"] . '</td>' .
             '<td>' . $row["registered"] . '</td>' .
-            '<td>' . '<a  href="<?php editRecords({$id}) ?>">Edit</a></td>' .
+            '<td>' . '<label class="notalink"><input type="submit" value="{$id}" class="invisibutton">
+                        Edit</label>' .
             "</tr>";
     }
     echo '</table>';

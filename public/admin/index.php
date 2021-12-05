@@ -4,7 +4,7 @@ require_once '../../config/config.php';
 require INCLUDE_DIR . '/header.inc.php';
 require INCLUDE_DIR . '/navbar.inc.php';
 echo '<h1>Admin</h1>';
-include FUNCTIONS_DIR . '/test.php';
+include FUNCTIONS_DIR . '/test.func.php';
 //echo $_SERVER['REQUEST_URI'];
 
 if ($_SESSION['role'] != 'admin') {

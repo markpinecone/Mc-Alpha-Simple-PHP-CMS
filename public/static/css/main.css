@@ -71,3 +71,15 @@ tr:nth-child(even) {
     background-color: #333;
     color: aliceblue;
 }
+
+.invisibutton {
+    height: 1px;
+    width: 1px;
+    display: none;
+    vertical-align: text-bottom;
+}
+
+label {
+    color: greenyellow;
+    text-decoration: none;
+}
