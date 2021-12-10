@@ -2,5 +2,6 @@
 Attempt to build very simple Login system.
 
 #ToDo:
-secure forms 
-etc.
+1. Secure forms
+2. Replace session variables with cookies.
+3. Implement password hashing
