@@ -5,6 +5,9 @@ function handleLoginRequest($result, $password) {
         $_SESSION["LoggedIn"] = true;
         $_SESSION["email"] = $_GET["email"];
         $_SESSION['role'] = $row['role'];
+        if (isset($_GET["remember"])) {
+            setcookie("logged-in", $_GET["email"], time() + (86400 * 30), "/");
+        }
         header("Location: /index.php");
         die();
     } else {

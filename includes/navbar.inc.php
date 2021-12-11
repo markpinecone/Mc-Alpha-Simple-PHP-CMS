@@ -8,15 +8,15 @@
                 <?php
                 if (!isset($_SESSION["LoggedIn"])) {
 
-                    echo '<li> <a class="nav-link " href="/login.php">Login</a> </li>';
-                    echo '<li> <a class="nav-link " href="/sign_up.php">Sign Up</a> </li>';
+                    echo '<li style="float: right; background-color: teal;"> <a class="nav-link " href="/login.php">Login</a> </li>';
+                    echo '<li style="float: right;"> <a class="nav-link " href="/sign_up.php">Sign Up</a> </li>';
 
                 } else {
 
                     if ($_SESSION['role'] == 'admin') {
                         echo '<li><a class="nav-link" href="/admin/index.php">Admin</a></li>';
                     }
-                    echo '<li> <a class="nav-link " href="/logout.php">Logout</a> </li>';
+                    echo '<li style="float:right; background-color: crimson;"> <a class="nav-link " href="/logout.php">Logout</a> </li>';
                 }
                 ?>
             </ul>
