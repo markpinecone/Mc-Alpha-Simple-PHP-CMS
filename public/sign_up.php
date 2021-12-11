@@ -11,17 +11,17 @@ require INCLUDE_DIR . '/sign_up.inc.php';
 
             <!-- Email input -->
             <div class="">
-                <input type="email" name='email' id="" class=""
+                <input type="email" name='email' value="<?php echo (isset($_GET['email']) ? $_GET['email'] : '');?>" id="" class=""
                        placeholder="E-mail"/>
             </div>
             <br>
             <div class="">
-                <input type="name" name='name' id="" class=""
+                <input type="name" name='name' value="<?php echo (isset($_GET['name']) ? $_GET['name'] : '');?>" id="" class=""
                        placeholder="First Name"/>
             </div>
             <br>
             <div class="">
-                <input type="lastname" name='lastname' id="" class=""
+                <input type="lastname" name='lastname' value="<?php echo (isset($_GET['lastname']) ? $_GET['lastname'] : '');?>" id="" class=""
                        placeholder="Last Name"/>
             </div>
             <br>

@@ -31,7 +31,9 @@ if (isset($_GET["submit"])) {
                 } else {
                     mysqli_stmt_bind_param($stmt, "sssss", $email, $password, $name, $lastname, $role);
                     mysqli_stmt_execute($stmt);
-                    echo '<div class="notify-success" User with e-mail ' . $email . ' has been added successfully';
+                    header("Location: /login.php");
+                    // echo '<div class="notify-success" User with e-mail ' . $email . ' has been added successfully';
+
                 }
             }else {
                 echo '<div class="alert">User with e-mail ' . $email . ' already exist!</div>';
