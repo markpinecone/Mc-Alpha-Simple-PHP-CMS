@@ -1,25 +1,18 @@
 <?php
-require INCLUDE_DIR . '/dbh.inc.php';
-require FUNCTIONS_DIR . '/login.func.php';
-
-if (isset($_GET['submit'])) {
-    $email = $_GET["email"];
-    $password = $_GET["password"];
-    $emailQuery = "SELECT * FROM Users WHERE email=?";
-    $stmt = mysqli_stmt_init($conn);
-    if (!mysqli_stmt_prepare($stmt, $emailQuery)) {
-        echo "SQL statement failed";
+if (isset($_POST["submit"])) {
+    $email = $_POST['email'];
+    $pass = $_POST['pass'];
+    if (isset($_POST["remember"])) {
+        $remember = true;
     } else {
-        mysqli_stmt_bind_param($stmt, "s", $email);
-        mysqli_stmt_execute($stmt);
-        $result = $stmt->get_result();
-        if ($result->num_rows == 0) {
-            echo '<div class="alert">User does not exist</div>';
-            die();
-        }else {
-            handleLoginRequest($result, $password);
-        }
+        $remember = false;
     }
-    $stmt->close();
+    require_once INCLUDE_DIR . '/dbh.inc.php';
+    require FUNCTIONS_DIR . '/functions.func.php';
+    if (emptyLoginInput($email, $pass) !== false) {
+        header("Location: /login.php?error=missinginput");
+        exit();
+    } else {
+        userLogin($conn, $email, $pass, $remember);
+    }
 }
-

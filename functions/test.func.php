@@ -1,6 +1,6 @@
 <?php
 require INCLUDE_DIR . '/dbh.inc.php';
-require __DIR__ . '/edit_records.func.php';
+
 
 $getAllRecordsQuery = "SELECT * FROM Users";
 $result = $conn->query($getAllRecordsQuery);
@@ -20,10 +20,10 @@ if ($result->num_rows > 0) {
             <th>Edit</th>
             </tr>
             ';
-    while($row = $result->fetch_assoc()) {
+    while ($row = $result->fetch_assoc()) {
         $id = $row["id"];
         echo
-            "<tr>".
+        "<tr>" .
             '<td>' . $row["id"] . '</td>' .
             '<td>' . $row["email"] . '</td>' .
             '<td>' . $row["name"] . '</td>' .
@@ -37,8 +37,5 @@ if ($result->num_rows > 0) {
     echo '</table>';
 } else {
     echo 'No results found!';
-
 }
 $conn->close();
-
-

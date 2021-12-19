@@ -4,21 +4,23 @@ require_once '../config/config.php';
 require INCLUDE_DIR . '/header.inc.php';
 require INCLUDE_DIR . '/navbar.inc.php';
 require INCLUDE_DIR . '/login.inc.php';
+require FUNCTIONS_DIR . '/functions.func.php';
+if (isLoggedIn()) {
+    header('Location: /index.php');
+}
 ?>
 <div id="form-container" class="center">
     <div id="form">
-        <form method="get" action="">
+        <form method="post" action="">
 
             <!-- Email input -->
             <div class="">
-                <input type="email" name='email' id="" class=""
-                       placeholder="Enter a valid email" />
+                <input type="email" name='email' placeholder="Enter a valid email" />
             </div><br>
 
             <!-- Password input -->
             <div class="">
-                <input type="password" name='password' id="" class=""
-                       placeholder="Enter password" />
+                <input type="password" name='pass' placeholder="Enter password" />
             </div><br>
             <input type="checkbox" id="remember" name="remember">
             <label for="remember">Remember me</label>

@@ -4,6 +4,7 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+
 #main-container {
     margin: auto;
     max-width: 1024px;
@@ -82,4 +83,20 @@ tr:nth-child(even) {
 label {
     color: greenyellow;
     text-decoration: none;
+}
+
+.right {
+    float: right;
+}
+#title {
+    width: 25%;
+    border: 2px solid #333;
+    border-radius: 15px;
+}
+#content {
+  width: 50%;
+  height: 200px;
+  border: 2px solid #333;
+  border-radius: 15px;
+  resize: none;
 }
