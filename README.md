@@ -1,4 +1,4 @@
-# Mc-Alpha-Simple-PHP-Login
+# Mc-Alpha-Simple-PHP-CMS
 Attempt to build very simple Login system.
 
 #ToDo:
