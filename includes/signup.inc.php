@@ -7,7 +7,7 @@ if (isset($_POST["submit"])) {
     $passRepeat = $_POST['repeat-pass'];
     $role = 'user';
     require_once INCLUDE_DIR . '/dbh.inc.php';
-    require FUNCTIONS_DIR . '/functions.func.php';
+    require_once FUNCTIONS_DIR . '/functions.func.php';
     if (emptyInput($email, $name, $lastname, $pass, $passRepeat) !== false) {
         header("Location: /signup.php?error=missinginput");
         exit();
@@ -25,7 +25,7 @@ if (isset($_POST["submit"])) {
         exit();
     } else {
         createUser($conn, $email, $pass, $name, $lastname, $role);
-        header("Location: /signup.php?notify=success");
+        header("Location: /signup.php?notify=usersuccess");
         exit();
     }
 }

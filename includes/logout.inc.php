@@ -6,6 +6,5 @@ if ($_SESSION["login-status"]) {
     header("Location: /login.php");
     if (isset($_COOKIE["logged-in"])) {
         setcookie("logged-in", "", time() - 3600);
-        echo 'cookie has been deleted';
     }
 }

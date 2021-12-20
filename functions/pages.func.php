@@ -5,7 +5,8 @@ if (isset($_POST["add"])) {
     $content = $_POST["content"];
     $sql = "INSERT INTO pages (title, content) VALUES ('$title', '$content')";
     if ($conn->query($sql) === TRUE) {
-        header("Location: /admin/pages.php?action=success");
+        header("Location: /admin/pages.php?notify=pagesuccess");
+        exit();
     } else {
         echo "<p>Error: " . $sql . "<br>" . $conn->error . "</p>";
     }

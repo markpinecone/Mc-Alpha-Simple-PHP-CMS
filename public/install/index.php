@@ -1,8 +1,8 @@
 <?php
 require_once '../../config/config.php';
 require INCLUDE_DIR . '/dbh.inc.php';
-require INCLUDE_DIR . '/header.inc.php';
-require INCLUDE_DIR . '/navbar.inc.php';
+require VIEWS_DIR . '/header.view.php';
+require VIEWS_DIR . '/navbar.view.php';
 require INSTALL_DIR . '/includes/install.inc.php';
 ?>
 
@@ -47,5 +47,5 @@ require INSTALL_DIR . '/includes/install.inc.php';
 </div>
 </div>
 <?php
-require INCLUDE_DIR . '/footer.inc.php';
+require VIEWS_DIR . '/footer.view.php';
 ?>

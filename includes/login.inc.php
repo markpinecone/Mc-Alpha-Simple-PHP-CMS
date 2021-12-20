@@ -8,7 +8,6 @@ if (isset($_POST["submit"])) {
         $remember = false;
     }
     require_once INCLUDE_DIR . '/dbh.inc.php';
-    require FUNCTIONS_DIR . '/functions.func.php';
     if (emptyLoginInput($email, $pass) !== false) {
         header("Location: /login.php?error=missinginput");
         exit();

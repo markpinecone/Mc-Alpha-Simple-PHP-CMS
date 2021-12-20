@@ -65,7 +65,7 @@ function invalidName($name, $lastname)
 {
     $invalid;
     $regex = '/^[a-zA-Z]*$/';
-    if (!preg_match($regex, $name) or !preg_match($regex, $lastname)) {
+    if (!preg_match($regex, $name) || !preg_match($regex, $lastname)) {
         $invalid = true;
     } else {
         $invalid = false;
@@ -86,7 +86,7 @@ function passwordMatch($password, $repeat)
 
 function emailExist($conn, $email)
 {
-    $answer;
+    $result;
     $emailQuery = "SELECT * FROM users WHERE email = ?;";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $emailQuery)) {
@@ -95,12 +95,12 @@ function emailExist($conn, $email)
     }
     mysqli_stmt_bind_param($stmt, "s", $email);
     mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
-    if ($row = mysqli_fetch_assoc($result)) {
+    $stmtResult = mysqli_stmt_get_result($stmt);
+    if ($row = mysqli_fetch_assoc($stmtResult)) {
         return $row;
     } else {
-        $answer = false;
-        return $answer;
+        $result = false;
+        return $result;
     }
     mysqli_stmt_close($stmt);
 }
@@ -118,7 +118,7 @@ function createUser($conn, $email, $pass, $name, $lastname, $role)
     mysqli_stmt_bind_param($stmt, "sssss", $email, $hashedPassword, $name, $lastname, $role);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
-    header("location: /signup.php?error=none");
+    header("location: /signup.php?notify=usersuccess");
     exit();
 }
 
@@ -145,4 +145,42 @@ function userLogin($conn, $email, $password, $remember)
         header("location: /index.php");
         exit();
     }
+}
+
+function getPages($conn) {
+    $pagesQuery = "SELECT id, title FROM pages";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $pagesQuery)) {
+        header("location: /index.php?error=stmtfailure");
+        exit();
+    }
+    mysqli_stmt_execute($stmt);
+    $stmtResult = mysqli_stmt_get_result($stmt);
+    while($row = mysqli_fetch_assoc($stmtResult)) {
+        $num = $row["id"];
+        $title = $row["title"];
+        echo "<li><a href='index.php?id={$num}'>{$title}</a></li>";
+    }
+    mysqli_stmt_close($stmt);
+}
+
+function getContent($conn, $id) {
+    $contentQuery = "SELECT * FROM pages WHERE id = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $contentQuery)) {
+        header("location: /index.php?error=stmtfailure");
+        exit();
+    }
+    mysqli_stmt_bind_param($stmt, "i", $id);
+    mysqli_stmt_execute($stmt);
+    $stmtResult = mysqli_stmt_get_result($stmt);
+    if (mysqli_num_rows($stmtResult) == 1) {
+        $row = mysqli_fetch_assoc($stmtResult);
+        echo "<h2>".$row["title"]."</h2>";
+        echo '<p>' . $row["content"] . '</p>';
+    } else {
+        include VIEWS_DIR . '/404.view.php';
+        exit();
+    }
+    mysqli_stmt_close($stmt);
 }
