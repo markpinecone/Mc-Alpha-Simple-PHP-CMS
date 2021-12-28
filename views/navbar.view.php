@@ -5,7 +5,9 @@
         </li>
         <?php
         // Load Pages from Database
-        getPages($conn);
+        if (checkTableExists($conn, 'Pages')) {
+            getPages($conn);
+        }
         if (!isset($_SESSION["login-status"])) {
             echo '<li style="float: right; background-color: teal;"> <a class="nav-link " href="/login.php">Login</a> </li>';
             echo '<li style="float: right;"> <a class="nav-link " href="/signup.php">Sign Up</a> </li>';

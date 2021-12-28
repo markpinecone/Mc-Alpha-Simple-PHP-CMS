@@ -148,7 +148,7 @@ function userLogin($conn, $email, $password, $remember)
 }
 
 function getPages($conn) {
-    $pagesQuery = "SELECT id, title FROM pages";
+    $pagesQuery = "SELECT id, title FROM pages ORDER BY orderby ASC";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $pagesQuery)) {
         header("location: /index.php?error=stmtfailure");
@@ -183,4 +183,51 @@ function getContent($conn, $id) {
         exit();
     }
     mysqli_stmt_close($stmt);
+}
+
+function createPage($conn, $title, $content, $order) {
+    $createPageQuery = "INSERT INTO Pages (title, content, orderby) VALUES (?, ?, ?);";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $createPageQuery)) {
+        header("location: /admin/pages.php?error=stmtfailure");
+        exit();
+    }
+    mysqli_stmt_bind_param($stmt, "ssi", $title, $content, $order);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    header("location: /signup.php?notify=pagesuccess");
+    exit();
+}
+
+function checkTableExists($conn, $table) {
+    $query = "SHOW TABLES LIKE '{$table}'";
+    $stmt = mysqli_stmt_init($conn);
+    $result = false;
+    if (!mysqli_stmt_prepare($stmt, $query)) {
+        // pass
+    } else {
+        mysqli_stmt_execute($stmt);
+        $stmtResult = mysqli_stmt_get_result($stmt);
+        if (mysqli_num_rows($stmtResult) > 0) {
+            $result = true ;
+        }
+    }
+    mysqli_stmt_close($stmt);
+    return $result;
+}
+
+function countTableRows($conn, $table) {
+    $query = "SELECT * FROM {$table}";
+    $stmt = mysqli_stmt_init($conn);
+    $result = 0;
+    if (!mysqli_stmt_prepare($stmt, $query)) {
+        //pass
+    } else {
+        mysqli_stmt_execute($stmt);
+        $stmtResult = mysqli_stmt_get_result($stmt);
+        $result = mysqli_num_rows($stmtResult);
+        }
+
+    mysqli_stmt_close($stmt);
+    return $result;
 }

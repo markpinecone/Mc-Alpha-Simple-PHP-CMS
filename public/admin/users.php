@@ -4,5 +4,6 @@ if (!isAdmin()) {
     exit();
 } else {
     echo '<h2>Users</h2>';
-    include FUNCTIONS_DIR . '/test.func.php';
+    include_once FUNCTIONS_DIR . '/table.func.php';
+    displayUsersTable($conn);
 }

@@ -5,7 +5,6 @@ require VIEWS_DIR . '/header.view.php';
 require VIEWS_DIR . '/navbar.view.php';
 require INSTALL_DIR . '/includes/install.inc.php';
 ?>
-
 <div id="form">
     <h2>Site Setup</h2>
     <h1>Create Admin user</h1>
@@ -44,7 +43,6 @@ require INSTALL_DIR . '/includes/install.inc.php';
         <br>
         <button type="submit" value="submit" name="submit" class="">Create User</button>
     </form>
-</div>
 </div>
 <?php
 require VIEWS_DIR . '/footer.view.php';

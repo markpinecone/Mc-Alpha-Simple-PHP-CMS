@@ -4,9 +4,6 @@ require INCLUDE_DIR . '/dbh.inc.php';
 
 $getAllRecordsQuery = "SELECT * FROM Users";
 $result = $conn->query($getAllRecordsQuery);
-
-
-
 if ($result->num_rows > 0) {
     echo '<table>';
     echo '

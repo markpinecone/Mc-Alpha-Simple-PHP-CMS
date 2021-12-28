@@ -14,6 +14,7 @@ $createPagesTable  = "CREATE TABLE Pages (
                         id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY UNIQUE,
                         title VARCHAR(20) NOT NULL UNIQUE,
                         content VARCHAR(1600) NOT NULL,
+                        orderby INT(1) NOT NULL UNIQUE,
                         edited TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
                         )";
 
