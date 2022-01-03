@@ -239,3 +239,4 @@ function deleteRow($conn, $id, $table,)
     mysqli_stmt_close($stmt);
     header("location: /admin/index.php?action={$page}&notify=deletesuccess");
 	exit();
+}
