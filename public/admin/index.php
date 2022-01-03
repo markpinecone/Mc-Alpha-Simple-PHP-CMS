@@ -28,7 +28,7 @@ if (isset($_GET["action"])) {
     }
 
 } else {
-    // pass
+	echo '<h2>Admin Dashboard<h2>';    
 }
 
 require VIEWS_DIR . '/footer.view.php';
