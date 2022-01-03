@@ -71,3 +71,13 @@ function displayPagesTable($conn) {
     }
     mysqli_stmt_close($stmt);
 }
+
+function showTable($array) {
+	echo '<table><tr>';
+	while (current($array)) {
+		echo '<th>{$header}</th>';
+	echo '</tr>';
+	next($array);
+	}
+}
+?>

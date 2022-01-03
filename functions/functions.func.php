@@ -16,15 +16,13 @@ function isAdmin()
 {
     if (!isset($_SESSION["role"]) || $_SESSION["role"] !== "admin") {
         return false;
-    } else {
-        return true;
-    }
+    } 
+	return true;
 }
 
 
 function emptyInput($email, $name, $lastname, $password, $repeatPassword)
 {
-    $empty;
     if (
         empty($email) ||
         empty($name) ||
@@ -41,7 +39,6 @@ function emptyInput($email, $name, $lastname, $password, $repeatPassword)
 
 function emptyLoginInput($email, $password)
 {
-    $empty;
     if (empty($email) || empty($password)) {
         $empty = true;
     } else {
@@ -52,7 +49,6 @@ function emptyLoginInput($email, $password)
 
 function invalidEmail($email)
 {
-    $invalid;
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $invalid = true;
     } else {
@@ -63,7 +59,6 @@ function invalidEmail($email)
 
 function invalidName($name, $lastname)
 {
-    $invalid;
     $regex = '/^[a-zA-Z]*$/';
     if (!preg_match($regex, $name) || !preg_match($regex, $lastname)) {
         $invalid = true;
@@ -75,7 +70,6 @@ function invalidName($name, $lastname)
 
 function passwordMatch($password, $repeat)
 {
-    $match;
     if ($password === $repeat) {
         $match = true;
     } else {
@@ -86,7 +80,6 @@ function passwordMatch($password, $repeat)
 
 function emailExist($conn, $email)
 {
-    $result;
     $emailQuery = "SELECT * FROM users WHERE email = ?;";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $emailQuery)) {
@@ -231,3 +224,18 @@ function countTableRows($conn, $table) {
     mysqli_stmt_close($stmt);
     return $result;
 }
+
+function deleteRow($conn, $id, $table,)
+{
+    $userQuery = "DELETE FROM ? WHERE id = ?;";
+	$stmt = mysqli_stmt_init($conn);
+	$page = strtolower($table);	
+	if (!mysqli_stmt_prepare($stmt, $userQuery)) {
+        header("location: /admin/index.php?action={$page}&error=stmtfailed)");
+        exit();
+    }
+    mysqli_stmt_bind_param($stmt, "is", $id, $table);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    header("location: /admin/index.php?action={$page}&notify=deletesuccess");
+	exit();
