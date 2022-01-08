@@ -1,10 +1,12 @@
 <?php
+require_once '../../config/config.php';
+require_once FUNCTIONS_DIR . '/functions.func.php';
 if (!isAdmin()) {
-    header('Location: /index.php');
+    header('Location: /index.php?error=forbidden');
     exit();
 } else {
+	include_once FUNCTIONS_DIR . '/table.func.php';
     echo '<h2>Users</h2>';
-    include_once FUNCTIONS_DIR . '/table.func.php';
 	// displayUsersTable($conn);
 	$array = array(
 		'ID' => 'id',
