@@ -10,6 +10,7 @@ function showTable($conn, $array, $dbtable) {
 	}
 	// Table headers
 	echo '<table><tr>';
+	echo '<th></th>';
 	while (current($array)) {
 		$header = key($array);
 		echo '<th>' . $header . '</th>';
@@ -19,7 +20,8 @@ function showTable($conn, $array, $dbtable) {
 	echo '</tr>';
 	// Table rows
 	echo '<tr>';
-    while ($row = mysqli_fetch_assoc($stmtResult)) {
+	while ($row = mysqli_fetch_assoc($stmtResult)) {
+		echo '<td><input type="checkbox" id="selected" name="selected" value="' . $row["id"] . '"></td>';
 		foreach($array as $key => $value) {
 			echo '<td>' . $row[$value] . '</td>';
 		}
