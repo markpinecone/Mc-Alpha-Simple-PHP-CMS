@@ -12,12 +12,6 @@ if (!isLoggedIn()) {
 	require VIEWS_DIR . '/header.view.php';
 	echo '<h1>Admin Panel</h1>';
 	require VIEWS_DIR . '/navbar_adm.view.php';
-
-	if ($_SESSION['role'] != 'admin') {
-		header("Location: /index.php");
-		exit();
-	}
-
 	if (isset($_GET["action"])) {
 		$action = filter_var($_GET["action"], FILTER_UNSAFE_RAW);
 		switch($action) {
