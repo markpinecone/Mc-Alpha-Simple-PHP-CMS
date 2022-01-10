@@ -15,5 +15,6 @@ if (isAdmin() !== true) {
 		"Last Update" => "edited",
 	);
 	showTable($conn, $array, 'Pages');
+	echo '<br><button type="button" name="delete">Delete selected</button>';
 	require_once FORMS_DIR . '/pages.form.php';
 }

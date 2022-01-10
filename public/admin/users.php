@@ -17,5 +17,9 @@ if (!isAdmin()) {
 		'Registration Date' => 'registered',
 	);
 	showTable($conn, $array, 'Users');
+	echo '<br><button type="button" name="delete">Delete selected</button><br><br>';
+	echo '<div class="update-form">';
+	require FORMS_DIR . '/signup.form.php';
+	echo '</div>';
 
 }

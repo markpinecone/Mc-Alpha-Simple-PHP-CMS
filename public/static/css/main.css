@@ -49,6 +49,28 @@ li a:hover {
 
 }
 
+.update-form #form	{
+	width: 30%;
+	float: left;
+}
+
+.update-form #form input {
+	/* width: 33.33%; */
+    width: 100%;
+    border: 2px solid #333;
+	text-align: left;
+	border-radius: 15px;
+	text-align: left;
+	padding: 5px;
+}
+
+.update-form #form button {
+	float: left;
+}
+
+
+
+
 .center {
     margin: auto;
     width: 50%;

@@ -25,7 +25,7 @@ function showTable($conn, $array, $dbtable) {
 		foreach($array as $key => $value) {
 			echo '<td>' . $row[$value] . '</td>';
 		}
-		echo '<td>Edit</td>';
+		echo '<td><a href="/admin/index.php?action='.strtolower($dbtable).'&edit='. $row["id"].'">Edit</a></td>';
 		echo '</tr>';
 	}
 	echo '</table>';

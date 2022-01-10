@@ -240,3 +240,20 @@ function deleteRow($conn, $id, $table,)
     header("location: /admin/index.php?action={$page}&notify=deletesuccess");
 	exit();
 }
+
+function getDataRows($conn, $id, $table) {
+	// Fetches data from DB to be inserted in USER/PAGE update form
+    $userQuery = "SELECT * FROM {$table} WHERE id = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $userQuery)) {
+        header("location: /signup.php?error=stmtfailure");
+        exit();
+    }
+    mysqli_stmt_bind_param($stmt, "i", $id);
+    mysqli_stmt_execute($stmt);
+    $stmtResult = mysqli_stmt_get_result($stmt);
+    if ($row = mysqli_fetch_assoc($stmtResult)) {
+		return $row;	
+	}
+    mysqli_stmt_close($stmt);
+}
