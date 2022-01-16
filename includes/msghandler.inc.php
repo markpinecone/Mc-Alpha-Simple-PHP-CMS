@@ -1,9 +1,9 @@
 <?php
 
 if (isset($_GET['error'])) {
-    handleMessage($_GET['error'], "error");
+    handleMessage(test_input($_GET['error']), "error");
 } elseif (isset($_GET['notify'])) {
-    handleMessage($_GET['notify'], "notify");
+    handleMessage(test_input($_GET['notify']), "notify");
 }
 function handleMessage($message, $type) {
     if ($type === "error") {

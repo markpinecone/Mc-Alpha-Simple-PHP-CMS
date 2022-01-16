@@ -9,3 +9,9 @@
 		</div>
     </ul>
 </nav>
+
+<?php
+if (isset($_GET['error']) || isset($_GET['notify'])) {
+        include_once INCLUDE_DIR . '/msghandler.inc.php';
+}
+?>

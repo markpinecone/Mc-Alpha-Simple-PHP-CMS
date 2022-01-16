@@ -4,7 +4,8 @@ require_once '../config/config.php';
 require VIEWS_DIR . '/header.view.php';
 require VIEWS_DIR . '/navbar.view.php';
 if (isset($_GET['id'])) {
-    getContent($conn, $_GET['id']);
+	$pageIdentifier = (int) $_GET["id"];
+    getContent($conn, $pageIdentifier);
 }
 if (isset($_GET["action"])) {
 	$action = $_GET["action"];

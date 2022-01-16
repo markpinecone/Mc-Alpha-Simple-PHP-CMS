@@ -1,10 +1,10 @@
 <?php
 if (isset($_POST["submit"])) {
-    $email = $_POST['email'];
-    $name = $_POST['name'];
-    $lastname = $_POST['lastname'];
-    $pass = $_POST['pass'];
-    $passRepeat = $_POST['repeat-pass'];
+    $email = test_input($_POST['email']);
+	$name = test_input($_POST['name']);
+    $lastname = test_input($_POST['lastname']);
+    $pass = test_input($_POST['pass']);
+    $passRepeat = test_input($_POST['repeat-pass']);
     $role = 'user';
     require_once INCLUDE_DIR . '/dbh.inc.php';
     require_once FUNCTIONS_DIR . '/functions.func.php';

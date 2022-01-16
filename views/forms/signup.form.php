@@ -26,22 +26,33 @@ function fetchInputData($field, $id, $table) {
 
             <!-- Email input -->
             <div class="">
-				<input type="email" name='email' value="<?php echo fetchInputData('email', $userid, 'users') ?>"
-                       id="" class="" placeholder="E-mail">
+				<input type="email" name='email' value="<?php 
+						echo fetchInputData('email', $userid, 'users'); 
+					?>" id="" class="" placeholder="E-mail">
             </div>
             <br>
             <div class="">
-                <input type="name" name='name' value="<?php echo fetchInputData('name', $userid, 'users') ?>""
-                       placeholder="First Name">
+				<input type="name" name='name' value="<?php 
+						echo fetchInputData('name', $userid, 'users'); 
+					?>" placeholder="First Name">
             </div>
             <br>
             <div class="">
-                <input type="lastname" name='lastname'
-                       value="<?php echo fetchInputData('lastname', $userid, 'users') ?>"
-                       placeholder="Last Name">
+                <input type="lastname" name='lastname' value="<?php 
+						echo fetchInputData('lastname', $userid, 'users');
+					?>" placeholder="Last Name">
             </div>
-            <br>
-
+			<br>
+			<?php 
+				if(isset($_GET["edit"])) {
+					echo '<div style="float: left;">
+						<label for="role">Role:</label>	
+						<select name="role">
+							<option value="user">User</option>
+							<option value="admin">Admin</option>
+						</select></div><br><br>';		
+				}
+			?>
             <!-- Password input -->
             <div class="">
                 <input type="password" name='pass' placeholder="Enter password">
@@ -50,7 +61,13 @@ function fetchInputData($field, $id, $table) {
             <div class="">
                 <input type="password" name='repeat-pass' placeholder="Repeat password" >
             </div>
-            <br>
-            <button type="submit" value="submit" name="submit" class="">Sign Up</button>
+			<br>
+			<?php 
+				if ($_GET["action"] != 'users') {
+				echo '<button type="submit" value="submit" name="submit" class="">Sign Up</button>';
+				} else {
+				echo '<button type="update" value="update" name="update" class="">Update User</button>';
+				}
+			?>
         </form>
     </div>

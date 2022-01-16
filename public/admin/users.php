@@ -5,7 +5,8 @@ if (!isAdmin()) {
     header('Location: /index.php?error=forbidden');
     exit();
 } else {
-	include_once FUNCTIONS_DIR . '/table.func.php';
+	require_once FUNCTIONS_DIR . '/table.func.php';
+	require_once INCLUDE_DIR . '/users.inc.php';
     echo '<h2>Users</h2>';
 	// displayUsersTable($conn);
 	$array = array(
@@ -16,10 +17,14 @@ if (!isAdmin()) {
 		'Role' => 'role',
 		'Registration Date' => 'registered',
 	);
+	echo '<form method="post" action="">';
 	showTable($conn, $array, 'Users');
-	echo '<br><button type="button" name="delete">Delete selected</button><br><br>';
-	echo '<div class="update-form">';
-	require FORMS_DIR . '/signup.form.php';
-	echo '</div>';
+	echo '<br><button type="submit" name="delete" value="delete">Delete selected</button><br><br>';
+	echo '</form>';
+	if(isset($_GET["edit"])) {
+		echo '<div class="update-form">';
+		require FORMS_DIR . '/signup.form.php';
+		echo '</div>';
+	}
 
 }

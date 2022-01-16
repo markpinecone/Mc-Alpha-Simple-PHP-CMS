@@ -115,6 +115,7 @@ function createUser($conn, $email, $pass, $name, $lastname, $role)
     exit();
 }
 
+
 function userLogin($conn, $email, $password, $remember)
 {
     $emailExists = emailExist($conn, $email);
@@ -141,7 +142,7 @@ function userLogin($conn, $email, $password, $remember)
 }
 
 function getPages($conn) {
-    $pagesQuery = "SELECT id, title FROM pages ORDER BY orderby ASC";
+    $pagesQuery = "SELECT id, title FROM pages ORDER BY `order` ASC";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $pagesQuery)) {
         header("location: /index.php?error=stmtfailure");
@@ -150,7 +151,7 @@ function getPages($conn) {
     mysqli_stmt_execute($stmt);
     $stmtResult = mysqli_stmt_get_result($stmt);
     while($row = mysqli_fetch_assoc($stmtResult)) {
-        $num = $row["id"];
+        $num = (int) $row["id"];
         $title = $row["title"];
         echo "<li><a href='index.php?id={$num}'>{$title}</a></li>";
     }
@@ -179,7 +180,7 @@ function getContent($conn, $id) {
 }
 
 function createPage($conn, $title, $content, $order) {
-    $createPageQuery = "INSERT INTO Pages (title, content, orderby) VALUES (?, ?, ?);";
+    $createPageQuery = "INSERT INTO Pages (title, content, `order`) VALUES (?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $createPageQuery)) {
         header("location: /admin/pages.php?error=stmtfailure");
@@ -188,7 +189,7 @@ function createPage($conn, $title, $content, $order) {
     mysqli_stmt_bind_param($stmt, "ssi", $title, $content, $order);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
-    header("location: /signup.php?notify=pagesuccess");
+    header("location: /admin/index.php?action=pages&notify=pagesuccess");
     exit();
 }
 
@@ -225,16 +226,16 @@ function countTableRows($conn, $table) {
     return $result;
 }
 
-function deleteRow($conn, $id, $table,)
+function deleteRow($conn, $page, $id, $table,)
 {
-    $userQuery = "DELETE FROM ? WHERE id = ?;";
+    $userQuery = "DELETE FROM {$table} WHERE id = ?;";
 	$stmt = mysqli_stmt_init($conn);
 	$page = strtolower($table);	
 	if (!mysqli_stmt_prepare($stmt, $userQuery)) {
         header("location: /admin/index.php?action={$page}&error=stmtfailed)");
         exit();
     }
-    mysqli_stmt_bind_param($stmt, "is", $id, $table);
+    mysqli_stmt_bind_param($stmt, "i", $id);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     header("location: /admin/index.php?action={$page}&notify=deletesuccess");
@@ -256,4 +257,11 @@ function getDataRows($conn, $id, $table) {
 		return $row;	
 	}
     mysqli_stmt_close($stmt);
+}
+
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
 }

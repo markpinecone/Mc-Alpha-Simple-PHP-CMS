@@ -16,12 +16,12 @@ function showTable($conn, $array, $dbtable) {
 		echo '<th>' . $header . '</th>';
 	next($array);
 	}
-	echo '<th>Edit</th>';
+	echo '<th></th>';
 	echo '</tr>';
 	// Table rows
 	echo '<tr>';
 	while ($row = mysqli_fetch_assoc($stmtResult)) {
-		echo '<td><input type="checkbox" id="selected" name="selected" value="' . $row["id"] . '"></td>';
+		echo '<td><input type="checkbox" id="selected" name="selected[]" value="' . $row["id"] . '"></td>';
 		foreach($array as $key => $value) {
 			echo '<td>' . $row[$value] . '</td>';
 		}

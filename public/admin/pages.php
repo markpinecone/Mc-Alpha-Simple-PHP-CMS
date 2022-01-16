@@ -11,10 +11,12 @@ if (isAdmin() !== true) {
 	$array = array(
 		"ID" => "id",
 		"Title" => "title",
-		"Priority" => "orderby",
+		"Priority" => "order",
 		"Last Update" => "edited",
 	);
+	echo '<form method="post" action="">';
 	showTable($conn, $array, 'Pages');
-	echo '<br><button type="button" name="delete">Delete selected</button>';
+	echo '<br><button type="submit" name="delete" value="delete">Delete selected</button>';
+	echo '</form>';
 	require_once FORMS_DIR . '/pages.form.php';
 }

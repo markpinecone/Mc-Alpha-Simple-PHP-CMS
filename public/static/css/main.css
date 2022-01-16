@@ -81,8 +81,15 @@ li a:hover {
 table {
     /* font-family: arial, sans-serif; */
     border-collapse: collapse;
+	border-radius: 15px;
     width: 100%;
 }
+
+th {
+  background-color: teal;
+  color: white;
+}
+
 
 td, th {
     border: 1px solid #dddddd;
@@ -90,9 +97,19 @@ td, th {
     padding: 8px;
 }
 
+tr a {
+	text-decoration: none;
+	color: black;
+}
+
 tr:nth-child(even) {
     background-color: #333;
     color: aliceblue;
+}
+
+tr:nth-child(even) a {
+	text-decoration: none;
+	color: white;
 }
 
 .invisibutton {
@@ -110,7 +127,7 @@ tr:nth-child(even) {
 .right {
     float: right;
 }
-#title {
+.inputfield {
     width: 25%;
     border: 2px solid #333;
     border-radius: 15px;
@@ -124,6 +141,7 @@ tr:nth-child(even) {
 }
 .alert {
     margin: auto;
+	text-align: center;
     background-color: 	#ee1f26;
     border: 2px solid #333;
     border-radius: 15px;
@@ -133,9 +151,10 @@ tr:nth-child(even) {
 
 .notify {
     margin: auto;
+	text-align: center;
     border: 2px solid #333;
     border-radius: 15px;
     background-color: 	#048c44;
-    opacity: 0.5;
+    opacity: 0.6;
     color: white;
 }
