@@ -16,7 +16,6 @@ if (isAdmin() !== true) {
 	);
 	echo '<form method="post" action="">';
 	showTable($conn, $array, 'Pages');
-	echo '<br><button type="submit" name="delete" value="delete">Delete selected</button>';
 	echo '</form>';
 	require_once FORMS_DIR . '/pages.form.php';
 }

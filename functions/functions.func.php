@@ -111,7 +111,7 @@ function createUser($conn, $email, $pass, $name, $lastname, $role)
     mysqli_stmt_bind_param($stmt, "sssss", $email, $hashedPassword, $name, $lastname, $role);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
-    header("location: /signup.php?notify=usersuccess");
+    header("location: /index.php?action=login&notify=usersuccess");
     exit();
 }
 
@@ -265,3 +265,34 @@ function test_input($data) {
   $data = htmlspecialchars($data);
   return $data;
 }
+
+function updateUser($conn, $email, $name, $lastname, $role, $id) {
+	$userQuery = "UPDATE Users SET email=?, name=?, lastname=?, role=? WHERE id=?;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $userQuery)) {
+        header("location: /admin/index.php?action=users&edit={$id}&error=stmtfailure");
+        exit();
+    }
+    mysqli_stmt_bind_param($stmt, "ssssi", $email, $name, $lastname, $role, $id);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    header("location: /admin/index.php?action=users&edit={$id}&notify=updatesuccess");
+    exit();
+	
+}
+
+function updatePage($conn, $title, $order, $content, $id) {
+	$userQuery = "UPDATE Pages SET title=?, `order`=?, content=? WHERE id=?;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $userQuery)) {
+        header("location: /admin/index.php?action=pages&edit={$id}&error=stmtfailure");
+        exit();
+    }
+    mysqli_stmt_bind_param($stmt, "sssi", $title, $order, $content, $id);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    header("location: /admin/index.php?action=pages&edit={$id}&notify=updatesuccess");
+    exit();
+	
+}
+

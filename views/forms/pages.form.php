@@ -34,13 +34,13 @@ function fetchInputData($field, $id, $table) {
 			} else { 
 				echo (fetchInputData('order', $pageID, 'Pages')); 
 			}
-		?>" placeholder="Order required" required><br><br>
+		?>" required><br><br>
 	<textarea id="content" name="content" placeholder="Add content here.."><?php 
 			echo fetchInputData('content', $pageID, 'Pages'); 
 		?></textarea><br><br>
 	<input type="submit" 
 		<?php echo (!isset($_GET["edit"]) ? 
 		'name="add" value="Add page">' : 
-		'name="update" value="Update page">');
+		'name="updatepage" value="Update page">');
 		?> 
 </form>

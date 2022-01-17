@@ -50,7 +50,9 @@ function fetchInputData($field, $id, $table) {
 						<select name="role">
 							<option value="user">User</option>
 							<option value="admin">Admin</option>
-						</select></div><br><br>';		
+						</select></div><br><br>';
+					echo '<button type="update" value="update" name="update" class="">Update User</button><br><br>';
+			
 				}
 			?>
             <!-- Password input -->
@@ -66,7 +68,7 @@ function fetchInputData($field, $id, $table) {
 				if ($_GET["action"] != 'users') {
 				echo '<button type="submit" value="submit" name="submit" class="">Sign Up</button>';
 				} else {
-				echo '<button type="update" value="update" name="update" class="">Update User</button>';
+				echo '<button type="submit" value="updatepass" name="updatepass" class="">Change Password</button>';
 				}
 			?>
         </form>

@@ -19,7 +19,6 @@ if (!isAdmin()) {
 	);
 	echo '<form method="post" action="">';
 	showTable($conn, $array, 'Users');
-	echo '<br><button type="submit" name="delete" value="delete">Delete selected</button><br><br>';
 	echo '</form>';
 	if(isset($_GET["edit"])) {
 		echo '<div class="update-form">';

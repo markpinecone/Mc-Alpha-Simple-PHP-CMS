@@ -8,15 +8,24 @@ if (isset($_POST["add"])) {
     createPage($conn, $title, $content, $order);
 }
 
-if (isset($_POST["delete"])) {
-	if(!empty($_POST["selected"])) {
-		foreach($_POST["selected"] as $selected) {
-			try {
-				$selected = (int) $selected;
-				deleteRow($conn, 'pages', $selected, 'Pages');
-			} catch (Exception $e) {
-				echo 'Caught exception: ' . $e->getMessage() . '<br>'; 
-			}
-		}
+
+if (isset($_GET["delete"]) && $_GET["action"] == 'pages') {
+		$id = (int)	$_GET["delete"]; 
+		try {
+			deleteRow($conn, 'pages', $id, 'Pages');
+		} catch (Exception $e) {
+			echo 'Caught exception: ' . $e->getMessage() . '<br>'; 
+	    }
+}
+
+if(isset($_POST["updatepage"]) && $_GET["action"] == "pages") {
+	$title = test_input($_POST["title"]);
+	$order = (int) $_POST["order"];
+	$content = test_input($_POST["content"]);
+	$id = (int) $_GET["edit"];
+	try {
+		updatePage($conn, $title, $order, $content, $id);
+	} catch (Exception $e) {
+		echo 'Caught exception: ' . $e->getMessage() . '<br>'; 	
 	}
-}	
+}
