@@ -1,20 +1,17 @@
-<div id="form-container" class="center">
-    <div id="form">
-        <form method="post" action="">
-
-            <!-- Email input -->
-            <div class="">
-                <input type="email" name='email' placeholder="Enter a valid email">
-            </div><br>
-
-            <!-- Password input -->
-            <div class="">
-                <input type="password" name='pass' placeholder="Enter password">
-            </div><br>
-            <input type="checkbox" id="remember" name="remember">
-            <label for="remember">Remember me</label>
-            <br><br>
-            <button type="submit" value="Submit" name="submit">Log In</button>
-        </form>
+<form method="post" action="">
+    <h3 class="mt-3">Sign In</h3>
+    <!-- Email input -->
+    <div class="form-group col-md-4 mb-3">
+        <label class="form-label" for="email">E-Mail</label>
+        <input class="form-control" id="email" type="email" name='email'>
     </div>
-</div>
+    <!-- Password input -->
+    <div class="form-group col-md-4 mb-3">
+        <label class="form-label" for="pass">Password</label>
+        <input id="pass" class="form-control" type="password" name='pass'>
+    </div>
+    <input type="checkbox" id="remember" name="remember">
+    <label for="remember">Remember me</label>
+    <br><br>
+    <button class="btn btn-primary"  type="submit" value="Submit" name="submit">Log In</button>
+</form>

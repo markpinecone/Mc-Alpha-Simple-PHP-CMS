@@ -7,15 +7,28 @@ if (isAdmin() !== true) {
 } else {
     require_once FUNCTIONS_DIR . '/table.func.php';
     require_once INCLUDE_DIR . '/pages.inc.php';
-    echo '<h2>Pages</h2>';
+    echo '<h2 class="mt-3 mb-3">Pages</h2>';
 	$array = array(
-		"ID" => "id",
+		"#" => "id",
 		"Title" => "title",
 		"Priority" => "order",
 		"Last Update" => "edited",
 	);
 	echo '<form method="post" action="">';
 	showTable($conn, $array, 'Pages');
-	echo '</form>';
+  echo '</form>';
+  if(isset($_POST['delete'])){
+      if(!empty($_POST['row'])){
+      foreach($_POST['row'] as $checked){
+      try {
+        deleteRow($conn, $_GET["action"], $checked, 'pages');
+      }
+      catch(Exception $e) {
+        echo 'Message: ' .$e->getMessage();
+      } 
+    }
+    header("location: /admin/index.php?action=pages&notify=deletesuccess");
+    }
+  }  
 	require_once FORMS_DIR . '/pages.form.php';
-}
+  }

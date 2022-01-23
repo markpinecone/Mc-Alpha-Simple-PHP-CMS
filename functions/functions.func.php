@@ -129,16 +129,15 @@ function userLogin($conn, $email, $password, $remember)
     if ($checkPass === false) {
         header("location: /login.php?error=incorrect");
         exit();
-    } elseif ($checkPass === true) {
-        $_SESSION["email"] = $emailExists["email"];
-        $_SESSION["login-status"] = true;
-        $_SESSION["role"] = $role;
-        if ($remember) {
-            setcookie("logged-in", $email, time() + (86400 * 30), "/");
-        }
-        header("location: /index.php");
-        exit();
+    } 
+    $_SESSION["email"] = $emailExists["email"];
+    $_SESSION["login-status"] = true;
+    $_SESSION["role"] = $role;
+    if ($remember) {
+        setcookie("logged-in", $email, time() + (86400 * 30), "/");
     }
+    header("location: /index.php");
+    exit();
 }
 
 function getPages($conn) {
@@ -153,7 +152,7 @@ function getPages($conn) {
     while($row = mysqli_fetch_assoc($stmtResult)) {
         $num = (int) $row["id"];
         $title = $row["title"];
-        echo "<li><a href='index.php?id={$num}'>{$title}</a></li>";
+        echo '<li class="nav-item"><a class="nav-link" href="index.php?id='.$num.'">'.$title.'</a></li>';
     }
     mysqli_stmt_close($stmt);
 }
@@ -172,7 +171,8 @@ function getContent($conn, $id) {
         $row = mysqli_fetch_assoc($stmtResult);
         echo "<h2>".$row["title"]."</h2>";
         echo '<p>' . $row["content"] . '</p>';
-    } else {
+  } else {
+        require_once '../config/config.php';
         include VIEWS_DIR . '/404.view.php';
         exit();
     }
@@ -238,8 +238,6 @@ function deleteRow($conn, $page, $id, $table,)
     mysqli_stmt_bind_param($stmt, "i", $id);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
-    header("location: /admin/index.php?action={$page}&notify=deletesuccess");
-	exit();
 }
 
 function getDataRows($conn, $id, $table) {

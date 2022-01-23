@@ -3,9 +3,10 @@ session_start();
 require_once '../config/config.php';
 require VIEWS_DIR . '/header.view.php';
 require VIEWS_DIR . '/navbar.view.php';
+require_once FUNCTIONS_DIR . '/functions.func.php';
 if (isset($_GET['id'])) {
 	$pageIdentifier = (int) $_GET["id"];
-    getContent($conn, $pageIdentifier);
+  getContent($conn, $pageIdentifier);
 }
 if (isset($_GET["action"])) {
 	$action = $_GET["action"];

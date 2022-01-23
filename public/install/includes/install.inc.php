@@ -7,7 +7,7 @@ if (isset($_POST["submit"])) {
     $passRepeat = $_POST['repeat-pass'];
     $role = 'admin';
     require_once INCLUDE_DIR . '/dbh.inc.php';
-    require FUNCTIONS_DIR . '/functions.func.php';
+    require_once FUNCTIONS_DIR . '/functions.func.php';
     if (emptyInput($email, $name, $lastname, $pass, $passRepeat) !== false) {
         header("Location: /install/index.php?error=missinginput");
         exit();
