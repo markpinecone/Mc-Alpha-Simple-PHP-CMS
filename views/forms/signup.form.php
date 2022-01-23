@@ -57,11 +57,11 @@ function fetchInputData($field, $id, $table) {
         <!-- Password input -->
         <div class="form-group col-md-4 mb-3">
             <label class="form-label" for="password">Password</label>
-            <input class="form-control" id="password" type="password" name='pass' required>
+            <input class="form-control" id="password" type="password" name='pass'>
         </div>
         <div class="form-group col-md-4 mb-3">
             <label class="form-label" for="repeat">Repeat password</label>
-            <input id="repeat" class="form-control" type="password" name='repeat-pass' required>
+            <input id="repeat" class="form-control" type="password" name='repeat-pass'>
         </div>
 			<?php 
 				if ($_GET["action"] != 'users') {
