@@ -2,8 +2,8 @@
     <h3 class="mt-3">Sign In</h3>
     <!-- Email input -->
     <div class="form-group col-md-4 mb-3">
-        <label class="form-label" for="email">E-Mail</label>
-        <input class="form-control" id="email" type="email" name='email'>
+        <label class="form-label" for="user">E-Mail</label>
+        <input class="form-control" id="user" type="user" name='user'>
     </div>
     <!-- Password input -->
     <div class="form-group col-md-4 mb-3">

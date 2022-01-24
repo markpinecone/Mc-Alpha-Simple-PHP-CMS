@@ -5,27 +5,30 @@ if (isset($_POST["submit"])) {
     $lastname = test_input($_POST['lastname']);
     $pass = test_input($_POST['pass']);
     $passRepeat = test_input($_POST['repeat-pass']);
+    $display_name = test_input($_POST["display_name"]);
     $role = 'user';
     require_once INCLUDE_DIR . '/dbh.inc.php';
     require_once FUNCTIONS_DIR . '/functions.func.php';
-    if (emptyInput($email, $name, $lastname, $pass, $passRepeat) !== false) {
-        header("Location: /signup.php?error=missinginput");
+    if (emptyInput($email, $name, $lastname, $pass, $passRepeat, $display_name) !== false) {
+        header("Location: /signup.php?error=missing-input");
         exit();
     } elseif (invalidEmail($email)) {
-        header("Location: /signup.php?error=invalidemail");
+        header("Location: /signup.php?error=invalid-email");
         exit();
     } elseif (invalidName($name, $lastname)) {
-        header("Location: /signup.php?error=invalidname");
+        header("Location: /signup.php?error=invalid-name");
         exit();
     } elseif (!passwordMatch($pass, $passRepeat)) {
-        header("Location: /signup.php?error=passmatch");
+        header("Location: /signup.php?error=pass-match");
         exit();
-    } elseif (emailExist($conn, $email) !== false) {
-        header("Location: /signup.php?error=emailexist");
+    } elseif (userExist($conn, $email) !== false) {
+        header("Location: /signup.php?error=email-exist");
         exit();
+    } elseif(userExist($conn, $display_name) !== false) {
+        header("Location: /signup.php?error=display-name-exist");
     } else {
-        createUser($conn, $email, $pass, $name, $lastname, $role);
-        header("Location: /signup.php?notify=usersuccess");
+        createUser($conn, $email, $pass, $name, $lastname, $display_name, $role);
+        header("Location: /signup.php?notify=user-created");
         exit();
     }
 }

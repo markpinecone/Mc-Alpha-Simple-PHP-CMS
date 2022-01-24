@@ -42,7 +42,13 @@ function fetchInputData($field, $id, $table) {
           <input class="form-control" id="lastname" type="lastname" name='lastname' value="<?php 
 						echo fetchInputData('lastname', $userid, 'users');
 					?>">
-        </div>
+          </div>
+          <div class="form-group col-md-4 mb-3">
+            <label class="form-label" for="Display Name">Display name</label>
+            <input class="form-control" id="display_name" type="display_name" name='display_name' value="<?php 
+						echo fetchInputData('display_name', $userid, 'users');
+					  ?>">
+          </div>
           <?php 
             if(isset($_GET["edit"])) {
               echo '<div class="form-group col-md-4 mb-3">' .

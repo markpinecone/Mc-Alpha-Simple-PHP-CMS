@@ -6,7 +6,7 @@ function isLoggedIn()
         return true;
     } elseif (isset($_COOKIE["logged-in"])) {
         $_SESSION["login-status"] = true;
-        $_SESSION["email"] = $_COOKIE["logged-in"];
+        $_SESSION["id"] = $_COOKIE["logged-in"];
         return true;
     }
     return false;
@@ -21,14 +21,15 @@ function isAdmin()
 }
 
 
-function emptyInput($email, $name, $lastname, $password, $repeatPassword)
+function emptyInput($email, $name, $lastname, $password, $repeatPassword, $display_name)
 {
     if (
         empty($email) ||
         empty($name) ||
         empty($lastname) ||
         empty($password) ||
-        empty($repeatPassword)
+        empty($repeatPassword) ||
+        empty($display_name)
     ) {
         $empty = true;
     } else {
@@ -37,9 +38,9 @@ function emptyInput($email, $name, $lastname, $password, $repeatPassword)
     return  $empty;
 }
 
-function emptyLoginInput($email, $password)
+function emptyLoginInput($user, $password)
 {
-    if (empty($email) || empty($password)) {
+    if (empty($user) || empty($password)) {
         $empty = true;
     } else {
         $empty = false;
@@ -78,29 +79,30 @@ function passwordMatch($password, $repeat)
     return $match;
 }
 
-function emailExist($conn, $email)
+function userExist($conn, $user)
 {
-    $emailQuery = "SELECT * FROM users WHERE email = ?;";
+    $emailQuery = "SELECT * FROM users WHERE email = ? OR display_name = ?;";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $emailQuery)) {
         header("location: /signup.php?error=stmtfailure");
         exit();
     }
-    mysqli_stmt_bind_param($stmt, "s", $email);
+    mysqli_stmt_bind_param($stmt, "ss", $user, $user);
     mysqli_stmt_execute($stmt);
     $stmtResult = mysqli_stmt_get_result($stmt);
     if ($row = mysqli_fetch_assoc($stmtResult)) {
+        mysqli_stmt_close($stmt);
         return $row;
     } else {
         $result = false;
+        mysqli_stmt_close($stmt);        
         return $result;
     }
-    mysqli_stmt_close($stmt);
 }
 
-function createUser($conn, $email, $pass, $name, $lastname, $role)
+function createUser($conn, $email, $pass, $name, $lastname, $display_name, $role)
 {
-    $userQuery = "INSERT INTO users (email, pass, name, lastname, role) VALUES (?, ?, ?, ?, ?);";
+    $userQuery = "INSERT INTO users (email, pass, name, lastname, display_name, role) VALUES (?, ?, ?, ?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $userQuery)) {
         header("location: /signup.php?error=stmtfailure");
@@ -108,7 +110,7 @@ function createUser($conn, $email, $pass, $name, $lastname, $role)
     }
     $hashedPassword = password_hash($pass, PASSWORD_DEFAULT);
 
-    mysqli_stmt_bind_param($stmt, "sssss", $email, $hashedPassword, $name, $lastname, $role);
+    mysqli_stmt_bind_param($stmt, "ssssss", $email, $hashedPassword, $name, $lastname, $display_name, $role);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     header("location: /index.php?action=login&notify=usersuccess");
@@ -116,25 +118,26 @@ function createUser($conn, $email, $pass, $name, $lastname, $role)
 }
 
 
-function userLogin($conn, $email, $password, $remember)
+function userLogin($conn, $user, $password, $remember)
 {
-    $emailExists = emailExist($conn, $email);
-    if ($emailExists === false) {
+    $userExists = userExist($conn, $user);
+    if ($userExists === false) {
         header("location: /login.php?error=incorrect");
         exit();
     }
-    $hashedPass = $emailExists["pass"];
-    $role = $emailExists["role"];
+    $hashedPass = $userExists["pass"];
+    $role = $userExists["role"];
+    $id = $userExists["id"];
     $checkPass = password_verify($password, $hashedPass);
     if ($checkPass === false) {
         header("location: /login.php?error=incorrect");
         exit();
     } 
-    $_SESSION["email"] = $emailExists["email"];
+    $_SESSION["id"] = $userExists["id"];
     $_SESSION["login-status"] = true;
     $_SESSION["role"] = $role;
     if ($remember) {
-        setcookie("logged-in", $email, time() + (86400 * 30), "/");
+        setcookie("logged-in", $id, time() + (86400 * 30), "/");
     }
     header("location: /index.php");
     exit();

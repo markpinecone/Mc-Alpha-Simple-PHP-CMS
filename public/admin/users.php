@@ -13,7 +13,8 @@ if (!isAdmin()) {
 		'#' => 'id',
 		'E-Mail' => 'email',
 		'Name' => 'name',
-		'Last name' => 'lastname',
+    'Last name' => 'lastname',
+    'Display name' => 'display_name',
 		'Role' => 'role',
 		'Registration Date' => 'registered',
 	);

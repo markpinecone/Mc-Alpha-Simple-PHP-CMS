@@ -21,7 +21,9 @@ if (isAdmin() !== true) {
       if(!empty($_POST['row'])){
       foreach($_POST['row'] as $checked){
       try {
-        deleteRow($conn, $_GET["action"], $checked, 'pages');
+        $row = (int) $checked;
+        $action = test_input($_GET["action"]);
+        deleteRow($conn, $action, $row, 'pages');
       }
       catch(Exception $e) {
         echo 'Message: ' .$e->getMessage();

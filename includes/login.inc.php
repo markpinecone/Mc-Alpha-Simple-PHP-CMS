@@ -1,6 +1,6 @@
 <?php
 if (isset($_POST["submit"])) {
-    $email = test_input($_POST['email']);
+    $user = test_input($_POST['user']);
     $pass = test_input($_POST['pass']);
     if (isset($_POST["remember"])) {
         $remember = true;
@@ -8,10 +8,10 @@ if (isset($_POST["submit"])) {
         $remember = false;
     }
     require_once INCLUDE_DIR . '/dbh.inc.php';
-    if (emptyLoginInput($email, $pass) !== false) {
-        header("Location: /login.php?error=missinginput");
+    if (emptyLoginInput($user, $pass) !== false) {
+        header("Location: /index.php?action=login&error=missing-input");
         exit();
     } else {
-        userLogin($conn, $email, $pass, $remember);
+        userLogin($conn, $user, $pass, $remember);
     }
 }

@@ -3,7 +3,7 @@ session_start();
 require_once '../../config/config.php';
 require_once FUNCTIONS_DIR . '/functions.func.php';
 if (!isLoggedIn()) {
-    header('Location: /login.php');
+    header('Location: /index.php?action=login');
     exit();
 } elseif ($_SESSION['role'] != 'admin') {
     header('Location: /index.php');
