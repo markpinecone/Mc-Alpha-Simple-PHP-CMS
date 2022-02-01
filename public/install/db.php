@@ -1,4 +1,5 @@
 <?php
+
 require_once '../../config/db_config.php';
 require_once './includes/dbc.inc.php';
 
@@ -45,7 +46,7 @@ require_once '../../includes/dbh.inc.php';
 echo '<h3>Setup Table "Users"</h3>';
 require INCLUDE_DIR . '/dbh.inc.php';
 try {
-    if ($conn->query($createUsersTable) === TRUE) {
+    if ($conn->query($createUsersTable) === true) {
         echo '<p>Table "Users" has been created.</p>';
     }
 } catch (Exception $e) {
@@ -55,7 +56,7 @@ try {
 echo '<h3>Setup Table "Pages"</h3>';
 
 try {
-    if ($conn->query($createPagesTable) === TRUE) {
+    if ($conn->query($createPagesTable) === true) {
         echo '<p>Table "Pages" has been created.</p>';
     }
 } catch (Exception $e) {
@@ -65,7 +66,7 @@ try {
 echo '<h3>Setup Table "Coments"</h3>';
 
 try {
-    if ($conn->query($createComentsTable) === TRUE) {
+    if ($conn->query($createComentsTable) === true) {
         echo '<p>Table "Coments" has been created.</p>';
     }
 } catch (Exception $e) {
@@ -75,7 +76,7 @@ try {
 echo '<h3>Setup Table "News"</h3>';
 
 try {
-    if ($conn->query($createNewsTable) === TRUE) {
+    if ($conn->query($createNewsTable) === true) {
         echo '<p>Table "News" has been created.</p>';
     }
 } catch (Exception $e) {

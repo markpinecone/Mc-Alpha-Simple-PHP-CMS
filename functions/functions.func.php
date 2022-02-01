@@ -16,26 +16,18 @@ function isAdmin()
 {
     if (!isset($_SESSION["role"]) || $_SESSION["role"] !== "admin") {
         return false;
-    } 
-	return true;
+    }
+    return true;
 }
-
 
 function emptyInput($email, $name, $lastname, $password, $repeatPassword, $display_name)
 {
-    if (
-        empty($email) ||
-        empty($name) ||
-        empty($lastname) ||
-        empty($password) ||
-        empty($repeatPassword) ||
-        empty($display_name)
-    ) {
+    if (empty($email) || empty($name) || empty($lastname) || empty($password) || empty($repeatPassword) || empty($display_name)) {
         $empty = true;
     } else {
         $empty = false;
     }
-    return  $empty;
+    return $empty;
 }
 
 function emptyLoginInput($user, $password)
@@ -45,7 +37,7 @@ function emptyLoginInput($user, $password)
     } else {
         $empty = false;
     }
-    return  $empty;
+    return $empty;
 }
 
 function invalidEmail($email)
@@ -95,7 +87,7 @@ function userExist($conn, $user)
         return $row;
     } else {
         $result = false;
-        mysqli_stmt_close($stmt);        
+        mysqli_stmt_close($stmt);
         return $result;
     }
 }
@@ -117,7 +109,6 @@ function createUser($conn, $email, $pass, $name, $lastname, $display_name, $role
     exit();
 }
 
-
 function userLogin($conn, $user, $password, $remember)
 {
     $userExists = userExist($conn, $user);
@@ -132,7 +123,7 @@ function userLogin($conn, $user, $password, $remember)
     if ($checkPass === false) {
         header("location: /login.php?error=incorrect");
         exit();
-    } 
+    }
     $_SESSION["id"] = $userExists["id"];
     $_SESSION["login-status"] = true;
     $_SESSION["role"] = $role;
@@ -143,7 +134,8 @@ function userLogin($conn, $user, $password, $remember)
     exit();
 }
 
-function getPages($conn) {
+function getPages($conn)
+{
     $pagesQuery = "SELECT id, title FROM pages ORDER BY `order` ASC";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $pagesQuery)) {
@@ -152,15 +144,16 @@ function getPages($conn) {
     }
     mysqli_stmt_execute($stmt);
     $stmtResult = mysqli_stmt_get_result($stmt);
-    while($row = mysqli_fetch_assoc($stmtResult)) {
-        $num = (int) $row["id"];
+    while ($row = mysqli_fetch_assoc($stmtResult)) {
+        $num = (int)$row["id"];
         $title = $row["title"];
-        echo '<li class="nav-item"><a class="nav-link" href="index.php?id='.$num.'">'.$title.'</a></li>';
+        echo '<li class="nav-item"><a class="nav-link" href="index.php?id=' . $num . '">' . $title . '</a></li>';
     }
     mysqli_stmt_close($stmt);
 }
 
-function getContent($conn, $id) {
+function getContent($conn, $id)
+{
     $contentQuery = "SELECT * FROM pages WHERE id = ?;";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $contentQuery)) {
@@ -172,9 +165,15 @@ function getContent($conn, $id) {
     $stmtResult = mysqli_stmt_get_result($stmt);
     if (mysqli_num_rows($stmtResult) == 1) {
         $row = mysqli_fetch_assoc($stmtResult);
-        echo "<h2>".$row["title"]."</h2>";
-        echo '<p>' . $row["content"] . '</p>';
-  } else {
+        // TODO Refactor this shortcut.
+        if ($row["title"] !== 'Blog') {
+            echo "<h2>" . $row["title"] . "</h2>";
+            echo '<p>' . $row["content"] . '</p>';
+        } else {
+            echo '<h2>'.$row["title"].'</h2>';
+            getNews($conn);
+        }
+    } else {
         require_once '../config/config.php';
         include VIEWS_DIR . '/404.view.php';
         exit();
@@ -182,7 +181,29 @@ function getContent($conn, $id) {
     mysqli_stmt_close($stmt);
 }
 
-function createPage($conn, $title, $content, $order) {
+function getNews($conn) {
+    $pagesQuery = "SELECT id, title, content FROM News ORDER BY timestamp DESC";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $pagesQuery)) {
+        header("location: /index.php?error=stmtfailure");
+        exit();
+    }
+    mysqli_stmt_execute($stmt);
+    $stmtResult = mysqli_stmt_get_result($stmt);
+    while ($row = mysqli_fetch_assoc($stmtResult)) {
+         // $num = (int)$row["id"];
+        $title = $row["title"];
+        $content = $row["content"];
+        echo '<h5 class="text-success"><strong>'.$title.'</strong></h5>';
+        echo '<p class="lead">'.$content.'<p>';
+    }
+    mysqli_stmt_close($stmt);
+
+
+}
+
+function createPage($conn, $title, $content, $order)
+{
     $createPageQuery = "INSERT INTO Pages (title, content, `order`) VALUES (?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $createPageQuery)) {
@@ -196,7 +217,8 @@ function createPage($conn, $title, $content, $order) {
     exit();
 }
 
-function checkTableExists($conn, $table) {
+function checkTableExists($conn, $table)
+{
     $query = "SHOW TABLES LIKE '{$table}'";
     $stmt = mysqli_stmt_init($conn);
     $result = false;
@@ -206,14 +228,15 @@ function checkTableExists($conn, $table) {
         mysqli_stmt_execute($stmt);
         $stmtResult = mysqli_stmt_get_result($stmt);
         if (mysqli_num_rows($stmtResult) > 0) {
-            $result = true ;
+            $result = true;
         }
     }
     mysqli_stmt_close($stmt);
     return $result;
 }
 
-function countTableRows($conn, $table) {
+function countTableRows($conn, $table)
+{
     $query = "SELECT * FROM {$table}";
     $stmt = mysqli_stmt_init($conn);
     $result = 0;
@@ -223,18 +246,18 @@ function countTableRows($conn, $table) {
         mysqli_stmt_execute($stmt);
         $stmtResult = mysqli_stmt_get_result($stmt);
         $result = mysqli_num_rows($stmtResult);
-        }
+    }
 
     mysqli_stmt_close($stmt);
     return $result;
 }
 
-function deleteRow($conn, $page, $id, $table,)
+function deleteRow($conn, $page, $id, $table)
 {
     $userQuery = "DELETE FROM {$table} WHERE id = ?;";
-	$stmt = mysqli_stmt_init($conn);
-	$page = strtolower($table);	
-	if (!mysqli_stmt_prepare($stmt, $userQuery)) {
+    $stmt = mysqli_stmt_init($conn);
+    $page = strtolower($table);
+    if (!mysqli_stmt_prepare($stmt, $userQuery)) {
         header("location: /admin/index.php?action={$page}&error=stmtfailed)");
         exit();
     }
@@ -243,8 +266,9 @@ function deleteRow($conn, $page, $id, $table,)
     mysqli_stmt_close($stmt);
 }
 
-function getDataRows($conn, $id, $table) {
-	// Fetches data from DB to be inserted in USER/PAGE update form
+function getDataRows($conn, $id, $table)
+{
+    // Fetches data from DB to be inserted in USER/PAGE update form
     $userQuery = "SELECT * FROM {$table} WHERE id = ?;";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $userQuery)) {
@@ -255,20 +279,22 @@ function getDataRows($conn, $id, $table) {
     mysqli_stmt_execute($stmt);
     $stmtResult = mysqli_stmt_get_result($stmt);
     if ($row = mysqli_fetch_assoc($stmtResult)) {
-		return $row;	
-	}
+        return $row;
+    }
     mysqli_stmt_close($stmt);
 }
 
-function test_input($data) {
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-  return $data;
+function test_input($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
 }
 
-function updateUser($conn, $email, $name, $lastname, $role, $id) {
-	$userQuery = "UPDATE Users SET email=?, name=?, lastname=?, role=? WHERE id=?;";
+function updateUser($conn, $email, $name, $lastname, $role, $id)
+{
+    $userQuery = "UPDATE Users SET email=?, name=?, lastname=?, role=? WHERE id=?;";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $userQuery)) {
         header("location: /admin/index.php?action=users&edit={$id}&error=stmtfailure");
@@ -279,11 +305,11 @@ function updateUser($conn, $email, $name, $lastname, $role, $id) {
     mysqli_stmt_close($stmt);
     header("location: /admin/index.php?action=users&edit={$id}&notify=updatesuccess");
     exit();
-	
 }
 
-function updatePage($conn, $title, $order, $content, $id) {
-	$userQuery = "UPDATE Pages SET title=?, `order`=?, content=? WHERE id=?;";
+function updatePage($conn, $title, $order, $content, $id)
+{
+    $userQuery = "UPDATE Pages SET title=?, `order`=?, content=? WHERE id=?;";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $userQuery)) {
         header("location: /admin/index.php?action=pages&edit={$id}&error=stmtfailure");
@@ -294,6 +320,4 @@ function updatePage($conn, $title, $order, $content, $id) {
     mysqli_stmt_close($stmt);
     header("location: /admin/index.php?action=pages&edit={$id}&notify=updatesuccess");
     exit();
-	
 }
-

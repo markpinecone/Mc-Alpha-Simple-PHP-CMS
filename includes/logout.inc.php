@@ -1,4 +1,5 @@
 <?php
+
 if ($_SESSION["login-status"]) {
     session_unset();
     session_destroy();
@@ -7,5 +8,5 @@ if ($_SESSION["login-status"]) {
         setcookie("logged-in", "", time() - 3600);
     }
     header("Location: /index.php?notify=signedout");
-    die();    
+    die();
 }

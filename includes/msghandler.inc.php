@@ -5,7 +5,8 @@ if (isset($_GET['error'])) {
 } elseif (isset($_GET['notify'])) {
     handleMessage(test_input($_GET['notify']), "notify");
 }
-function handleMessage($message, $type) {
+function handleMessage($message, $type)
+{
     if ($type === "error") {
         switch ($message) {
             case "stmtfailure":
@@ -29,8 +30,8 @@ function handleMessage($message, $type) {
             default:
                 break;
             }
-       } elseif ($type === "notify") {
-            switch ($message) {
+    } elseif ($type === "notify") {
+        switch ($message) {
                 case "usersuccess":
                     echo "<div class='notify'>User created successfully</div>";
                     break;
@@ -40,6 +41,5 @@ function handleMessage($message, $type) {
                 default:
                     break;
             }
-        }
+    }
 }
-

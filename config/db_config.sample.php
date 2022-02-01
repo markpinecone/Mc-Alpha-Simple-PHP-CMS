@@ -1,4 +1,5 @@
 <?php
+
 // DB Config
 $host = "localhost";
 $db_user = "";

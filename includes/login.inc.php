@@ -1,4 +1,5 @@
 <?php
+
 if (isset($_POST["submit"])) {
     $user = test_input($_POST['user']);
     $pass = test_input($_POST['pass']);

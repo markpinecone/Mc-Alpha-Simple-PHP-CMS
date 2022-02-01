@@ -1,7 +1,8 @@
 <?php
+
 if (isset($_POST["submit"])) {
     $email = test_input($_POST['email']);
-	$name = test_input($_POST['name']);
+    $name = test_input($_POST['name']);
     $lastname = test_input($_POST['lastname']);
     $pass = test_input($_POST['pass']);
     $passRepeat = test_input($_POST['repeat-pass']);
@@ -24,7 +25,7 @@ if (isset($_POST["submit"])) {
     } elseif (userExist($conn, $email) !== false) {
         header("Location: /signup.php?error=email-exist");
         exit();
-    } elseif(userExist($conn, $display_name) !== false) {
+    } elseif (userExist($conn, $display_name) !== false) {
         header("Location: /signup.php?error=display-name-exist");
     } else {
         createUser($conn, $email, $pass, $name, $lastname, $display_name, $role);
@@ -32,5 +33,3 @@ if (isset($_POST["submit"])) {
         exit();
     }
 }
-
-

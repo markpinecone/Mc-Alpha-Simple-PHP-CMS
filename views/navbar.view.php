@@ -25,7 +25,7 @@
                 <?php
                 // Load Pages from Database
                   if (checkTableExists($conn, 'Pages')) {
-                    getPages($conn);
+                      getPages($conn);
                   }
                 ?>
  
@@ -42,11 +42,11 @@
                         echo '<li class="nav-item"> <a class="nav-link" href="/index.php?action=signup">Sign Up</a> </li>';
                         echo '<li class="nav-item rounded-pill" style="background-color: teal;"> <a class="nav-link" href="/index.php?action=login">Login</a> </li>';
                     } else {
-                        if(isAdmin()) {
-                          echo '<li class="nav-item ml-3">'. 
+                        if (isAdmin()) {
+                            echo '<li class="nav-item ml-3">'.
                                 '<a class="nav-link" href="/admin/index.php"><i class="bi bi-gear-fill"></i></a>';
                         }
-                        echo '<li class="nav-item rounded-pill" style="background-color: crimson;">'. 
+                        echo '<li class="nav-item rounded-pill" style="background-color: crimson;">'.
                              '<a class="nav-link" href="/index.php?action=logout">Logout</a>';
                     }
                     ?>

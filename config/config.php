@@ -1,4 +1,5 @@
 <?php
+
 define('PROJECT_DIR', dirname(__FILE__, 2));
 define('CONFIG_DIR', dirname(__FILE__));
 define('INCLUDE_DIR', PROJECT_DIR . '/includes');

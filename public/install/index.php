@@ -30,16 +30,16 @@ require INSTALL_DIR . '/includes/install.inc.php';
       <button class="btn btn-primary" type="submit" value="db" name="db">Setup Database tables</button><br><br>
       <!-- Email input -->
       <div class="form-group mb-3">
-          <input class="form-control col-md-4" type="email" name='email' value="<?php echo (isset($_GET['email']) ? $_GET['email'] : ''); ?>" id=""
+          <input class="form-control col-md-4" type="email" name='email' value="<?php echo(isset($_GET['email']) ? $_GET['email'] : ''); ?>" id=""
               class="" placeholder="Admin e-mail">
       </div>
       <div class="form-group mb-3">
-          <input class="form-control" type="name" name='name' value="<?php echo (isset($_GET['name']) ? $_GET['name'] : ''); ?>" id=""
+          <input class="form-control" type="name" name='name' value="<?php echo(isset($_GET['name']) ? $_GET['name'] : ''); ?>" id=""
               placeholder="First Name">
       </div>
       <div class="form-group mb-3">
           <input class="form-control" type="lastname" name='lastname'
-              value="<?php echo (isset($_GET['lastname']) ? $_GET['lastname'] : ''); ?>" placeholder="Last Name">
+              value="<?php echo(isset($_GET['lastname']) ? $_GET['lastname'] : ''); ?>" placeholder="Last Name">
       </div>
       <!-- Password input -->
       <div class="form-group mb-3">
