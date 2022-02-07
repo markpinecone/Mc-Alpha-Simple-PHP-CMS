@@ -22,14 +22,15 @@ $createPagesTable  = "CREATE TABLE Pages (
                         edited TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
                         )";
 
-$createComentsTable = "CREATE TABLE Coments (
+$createComentsTable = "CREATE TABLE Comments (
                         id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY UNIQUE,
-                        news_id INT(11) NOT NULL,
+                        post_id INT(11) NOT NULL,
+                        author_id INT(11) NOT NULL,
                         content TEXT,
                         timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-                        status VARCHAR(10)
+                        status VARCHAR(10) DEFAULT 'active'
                         )";
-$createNewsTable = "CREATE TABLE News (
+$createNewsTable = "CREATE TABLE Posts (
                         id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY UNIQUE,
                         title VARCHAR(30) NOT NULL,
                         content TEXT,
@@ -67,7 +68,7 @@ echo '<h3>Setup Table "Coments"</h3>';
 
 try {
     if ($conn->query($createComentsTable) === true) {
-        echo '<p>Table "Coments" has been created.</p>';
+        echo '<p>Table "Comments" has been created.</p>';
     }
 } catch (Exception $e) {
     echo 'Caught exception: ',  $e->getMessage(), "\n";

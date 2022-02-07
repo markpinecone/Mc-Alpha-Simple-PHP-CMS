@@ -14,15 +14,20 @@
 <?php
 require_once '../../config/config.php';
 echo '<div class="container text-center">';
-require INSTALL_DIR . '/includes/install.inc.php';
 ?>
   <div class="">
   <h2 class="mt-3 mb-3">Site Setup</h2>
   <h1 class="mb-3">Create Admin user</h1>
-  <?php
-  if (isset($_POST["db"])) {
-      include INSTALL_DIR . '/db.php';
-  }
+<?php
+    if (isset($_POST["db"])) {
+        include INSTALL_DIR . '/db.php';
+}
+    if (isset($_POST["submit"])) {
+       include INSTALL_DIR . '/includes/install.inc.php'; 
+    }
+
+
+
 ?>
   </div>
   <div class="d-flex justify-content-center">

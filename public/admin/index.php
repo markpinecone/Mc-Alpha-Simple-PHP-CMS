@@ -21,6 +21,9 @@ if (!isLoggedIn()) {
             case("users"):
                 require 'users.php';
                 break;
+            case("posts"):
+                require 'posts.php';
+                break;
             case("logout"):
                 require INCLUDE_DIR . '/logout.inc.php';
                 break;

@@ -23,6 +23,9 @@ if (isset($_GET["action"])) {
             require INCLUDE_DIR . '/login.inc.php';
             require_once FORMS_DIR . '/login.form.php';
             break;
+        case("post"):
+            require INCLUDE_DIR . '/post.inc.php';
+            require VIEWS_DIR . '/post.view.php';
         defaut:
             break;
     }

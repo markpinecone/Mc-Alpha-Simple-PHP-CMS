@@ -8,21 +8,6 @@ if (!isset($_GET["edit"])) {
         $pageID = (int) $_GET["edit"];
     }
 }
-function fetchInputData($field, $id, $table)
-{
-    if (isAdmin() && isset($_GET["edit"])) {
-        if ($id) {
-            require INCLUDE_DIR . '/dbh.inc.php';
-            $data = getDataRows($conn, $id, $table);
-            return $data[$field];
-        } else {
-            header("location: /admin/index.php?action=pages&error=fetchfailure");
-            exit();
-        }
-    } else {
-        return (isset($_POST['$field']) ? $_POST['$field'] : '');
-    }
-}
 ?>
 <form action="" method="post">
   <div class="form-group col-md-4 mb-3">
