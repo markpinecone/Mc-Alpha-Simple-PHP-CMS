@@ -1,6 +1,5 @@
 <?php
-require_once '../../../config/config.php';
-require INCLUDE_DIR . '/dbh.inc.php';
+require_once '../../config/config.php';
 $email = $_POST['email'];
 $name = $_POST['name'];
 $lastname = $_POST['lastname'];
