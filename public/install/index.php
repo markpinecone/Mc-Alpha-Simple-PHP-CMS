@@ -10,10 +10,10 @@
     <title>CMS101 Setup</title>
 </head>
 <body>
+<div class="container text-center">
 
 <?php
 require_once '../../config/config.php';
-echo '<div class="container text-center">';
 ?>
   <div class="">
   <h2 class="mt-3 mb-3">Site Setup</h2>
@@ -57,6 +57,7 @@ echo '<div class="container text-center">';
   </form>
   </div>            
 </div>
-<?php
-require VIEWS_DIR . '/footer.view.php';
-?>
+<script src="/static/bootstrap/js/bootstrap.bundle.min.js"</script>
+</body>
+</html>
+

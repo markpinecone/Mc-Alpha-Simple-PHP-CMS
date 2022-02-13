@@ -4,7 +4,6 @@ session_start();
 require_once '../config/config.php';
 require VIEWS_DIR . '/header.view.php';
 require VIEWS_DIR . '/navbar.view.php';
-require_once FUNCTIONS_DIR . '/functions.func.php';
 if (isset($_GET['id'])) {
     $pageIdentifier = (int) $_GET["id"];
     getContent($conn, $pageIdentifier);
@@ -26,7 +25,11 @@ if (isset($_GET["action"])) {
         case("post"):
             require INCLUDE_DIR . '/post.inc.php';
             require VIEWS_DIR . '/post.view.php';
-        defaut:
+            break;
+        case("home"):
+            getContent($conn, getSetPage($conn, 'ID of Home page'));
+            break;
+        default:
             break;
     }
 }

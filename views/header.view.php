@@ -1,7 +1,3 @@
-<?php
-    require_once INCLUDE_DIR . '/dbh.inc.php';
-    require_once FUNCTIONS_DIR . '/functions.func.php';
-    ?>
 <!DOCTYPE html>
 <html lang="en">
 

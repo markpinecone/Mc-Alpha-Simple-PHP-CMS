@@ -29,7 +29,8 @@
                    	<li class="nav-item"><a class="nav-link" href="/admin/index.php?action=pages">Pages</a></li>
                    	<li class="nav-item"><a class="nav-link" href="/admin/index.php?action=posts">Posts</a></li>
                     <li class="nav-item"><a class="nav-link" href="/admin/index.php?action=users">Users</a></li>
-			              <li class="nav-item rounded-pill" style="background-color: crimson;"><a class="nav-link" href="/admin/index.php?action=logout">Logout</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/admin/index.php?action=settings">Settings</a></li>
+                    <li class="nav-item rounded-pill" style="background-color: crimson;"><a class="nav-link" href="/admin/index.php?action=logout">Logout</a></li>
                 </ul>
             </div>
         </div>

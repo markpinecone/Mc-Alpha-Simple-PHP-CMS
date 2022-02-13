@@ -32,11 +32,19 @@ $createComentsTable = "CREATE TABLE Comments (
                         )";
 $createNewsTable = "CREATE TABLE Posts (
                         id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY UNIQUE,
-                        title VARCHAR(30) NOT NULL,
+                        title VARCHAR(30) NOT NULL UNIQUE,
                         content TEXT,
                         timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
                         )";
 
+$createOptionsTable = "CREATE TABLE Settings (
+                        id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY UNIQUE,
+                        name VARCHAR(15) NOT NULL UNIQUE,
+                        value INT(11) NOT NULL
+)";
+
+$createSettings = "INSERT INTO Settings (name, value)
+VALUES ('ID of Blog page', '0'),('ID of Home page', '0');";
 
 
 echo '<h3>Setup DB</h3>';
@@ -48,41 +56,60 @@ echo '<h3>Setup Table "Users"</h3>';
 require INCLUDE_DIR . '/dbh.inc.php';
 try {
     if ($conn->query($createUsersTable) === true) {
-        echo '<p>Table "Users" has been created.</p>';
+        echo '<p class="alert-success">Table "Users" has been created.</p>';
     }
 } catch (Exception $e) {
-    echo 'Caught exception: ',  $e->getMessage(), "\n";
+    echo '<p class="alert-warning">Caught exception: ',  $e->getMessage(), "</p>\n";
 }
 
 echo '<h3>Setup Table "Pages"</h3>';
 
 try {
     if ($conn->query($createPagesTable) === true) {
-        echo '<p>Table "Pages" has been created.</p>';
+        echo '<p  class="alert-success">Table "Pages" has been created.</p>';
     }
 } catch (Exception $e) {
-    echo 'Caught exception: ',  $e->getMessage(), "\n";
+    echo '<p class="alert-warning">Caught exception: ',  $e->getMessage(), "\n";
 }
 
-echo '<h3>Setup Table "Coments"</h3>';
+echo '<h3>Setup Table "Comments"</h3>';
 
 try {
     if ($conn->query($createComentsTable) === true) {
-        echo '<p>Table "Comments" has been created.</p>';
+        echo '<p  class="alert-success">Table "Comments" has been created.</p>';
     }
 } catch (Exception $e) {
-    echo 'Caught exception: ',  $e->getMessage(), "\n";
+    echo '<p class="alert-warning">Caught exception: ',  $e->getMessage(), "</p>\n";
 }
 
-echo '<h3>Setup Table "News"</h3>';
+echo '<h3>Setup Table "Posts"</h3>';
 
 try {
     if ($conn->query($createNewsTable) === true) {
-        echo '<p>Table "News" has been created.</p>';
+        echo '<p  class="alert-success">Table "Posts" has been created.</p>';
     }
 } catch (Exception $e) {
-    echo 'Caught exception: ',  $e->getMessage(), "\n";
+    echo '<p class="alert-warning">Caught exception: ',  $e->getMessage(), "</p>\n";
 }
 
+echo '<h3>Setup Table "Settings"</h3>';
+
+try {
+    if ($conn->query($createOptionsTable) === true) {
+        echo '<p  class="alert-success">Table "Settings" has been created.</p>';
+    }
+} catch (Exception $e) {
+    echo '<p class="alert-warning">Caught exception: ',  $e->getMessage(), "</p>\n";
+}
+
+echo '<h3>Setup "Settings" entries</h3>';
+
+try {
+    if ($conn->query($createSettings) === true) {
+        echo '<p  class="alert-success">Initial Settings has been created.</p>';
+    }
+} catch (Exception $e) {
+    echo '<p class="alert-warning">Caught exception: ',  $e->getMessage(), "</p>\n";
+}
 
 echo '<br><br>';

@@ -11,9 +11,9 @@ function createDB()
     $createDatabase = "CREATE DATABASE {$db_name};";
     try {
         if ($dbconn->query($createDatabase) === true) {
-            return '<p>Database "'. $db_name . '" has been created.</p>';
+            return '<p class="alert-success">Database "'. $db_name . '" has been created.</p>';
         }
     } catch (Exception $e) {
-        return 'Caught exception: '.  $e->getMessage(). "\n";
+        return '<p class="alert-warning">Caught exception: '.  $e->getMessage(). "</p>\n";
     }
 }

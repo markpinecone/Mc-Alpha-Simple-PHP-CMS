@@ -20,12 +20,12 @@
             <!-- Left links -->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="/index.php">Home</a>
+                    <a class="nav-link" href="/index.php?action=home">Home</a>
                 </li>
                 <?php
                 // Load Pages from Database
                   if (checkTableExists($conn, 'Pages')) {
-                      getPages($conn);
+                      getAllPages($conn);
                   }
                 ?>
  

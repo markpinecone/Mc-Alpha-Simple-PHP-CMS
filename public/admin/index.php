@@ -2,7 +2,6 @@
 
 session_start();
 require_once '../../config/config.php';
-require_once FUNCTIONS_DIR . '/functions.func.php';
 if (!isLoggedIn()) {
     header('Location: /index.php?action=login');
     exit();
@@ -26,6 +25,9 @@ if (!isLoggedIn()) {
                 break;
             case("logout"):
                 require INCLUDE_DIR . '/logout.inc.php';
+                break;
+            case("settings"):
+                require 'settings.php';
                 break;
             default:
                 break;

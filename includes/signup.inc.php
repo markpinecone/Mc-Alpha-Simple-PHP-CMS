@@ -9,7 +9,6 @@ if (isset($_POST["submit"])) {
     $display_name = test_input($_POST["display_name"]);
     $role = 'user';
     require_once INCLUDE_DIR . '/dbh.inc.php';
-    require_once FUNCTIONS_DIR . '/functions.func.php';
     if (emptyInput($email, $name, $lastname, $pass, $passRepeat, $display_name) !== false) {
         header("Location: /signup.php?error=missing-input");
         exit();

@@ -1,6 +1,5 @@
 <?php
-
-require FUNCTIONS_DIR . '/functions.func.php';
+require_once '../../../config/config.php';
 require INCLUDE_DIR . '/dbh.inc.php';
 $email = $_POST['email'];
 $name = $_POST['name'];

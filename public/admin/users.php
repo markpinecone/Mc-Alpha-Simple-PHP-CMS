@@ -1,12 +1,11 @@
 <?php
 
 require_once '../../config/config.php';
-require_once FUNCTIONS_DIR . '/functions.func.php';
 if (!isAdmin()) {
     header('Location: /index.php?error=forbidden');
     exit();
 } else {
-    require_once FUNCTIONS_DIR . '/table.func.php';
+    require_once FUNCTIONS_DIR . '/Table/table.func.php';
     require_once INCLUDE_DIR . '/users.inc.php';
     echo '<h2 class="mt-3 mb-3">Users</h2>';
     // displayUsersTable($conn);
@@ -26,7 +25,7 @@ if (!isAdmin()) {
         if (!empty($_POST['row'])) {
             foreach ($_POST['row'] as $checked) {
                 try {
-                    deleteRow($conn, $_GET["action"], $checked, 'users');
+                    deleteRow($conn, $checked, 'users');
                 } catch (Exception $e) {
                     echo 'Message: ' .$e->getMessage();
                 }

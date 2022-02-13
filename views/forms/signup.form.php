@@ -1,26 +1,10 @@
 <?php
-echo($_GET["action"] !== "users" ? '<h3 class="mt-3">User Sign Up</h3>' : '<h3 class="mt-3">Change user details</h3>');
+echo ($_GET["action"] !== "users" ? '<h3 class="mt-3">User Sign Up</h3>' : '<h3 class="mt-3">Change user details</h3>');
 if (isset($_GET["edit"]) && !empty($_GET["edit"])) {
     $userid = (int) $_GET["edit"];
 } else {
     $userid = null;
 }
-function fetchInputData($field, $id, $table)
-{
-    if (isAdmin() && isset($_GET["edit"])) {
-        if ($id) {
-            require INCLUDE_DIR . '/dbh.inc.php';
-            $data = getDataRows($conn, $id, $table);
-            return $data[$field];
-        } else {
-            header("location: /admin/index.php?action=users&error=fetchfailure");
-            exit();
-        }
-    } else {
-        return (isset($_POST['$field']) ? $_POST['$field'] : '');
-    }
-}
-
 ?>
     <div id="form">
         <form method="post" action="">

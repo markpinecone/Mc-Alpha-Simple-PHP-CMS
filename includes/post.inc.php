@@ -1,7 +1,5 @@
 <?php
 
-require_once INCLUDE_DIR . '/dbh.inc.php';
-
 if (isset($_POST["addpost"])) {
     $title = test_input($_POST["title"]);
     $content = test_input($_POST["content"]);
@@ -12,7 +10,7 @@ if (isset($_POST["addpost"])) {
 if (isset($_GET["delete"]) && $_GET["action"] == 'posts') {
     $id = (int)	$_GET["delete"];
     try {
-        deleteRow($conn, 'posts', $id, 'posts');
+        deleteRow($conn, $id, 'posts');
     } catch (Exception $e) {
         echo 'Caught exception: ' . $e->getMessage() . '<br>';
     }
