@@ -1,7 +1,9 @@
 <?php
 
 require_once '../../config/db_config.php';
-require_once './includes/dbc.inc.php';
+require_once 'includes/dbc.inc.php';
+echo '<h3>Setup DB</h3>';
+echo createDB();
 
 $createUsersTable  = "CREATE TABLE Users (
                         id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY UNIQUE,
@@ -11,6 +13,7 @@ $createUsersTable  = "CREATE TABLE Users (
                         lastname VARCHAR(30),
                         role VARCHAR(10),     
                         display_name VARCHAR(30) NOT NULL UNIQUE,
+                        avatar VARCHAR(255) NOT NULL DEFAULT 'default.png', 
                         registered TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
                         )";
 
@@ -22,7 +25,7 @@ $createPagesTable  = "CREATE TABLE Pages (
                         edited TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
                         )";
 
-$createComentsTable = "CREATE TABLE Comments (
+$createCommentsTable = "CREATE TABLE Comments (
                         id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY UNIQUE,
                         post_id INT(11) NOT NULL,
                         author_id INT(11) NOT NULL,
@@ -46,10 +49,7 @@ $createOptionsTable = "CREATE TABLE Settings (
 $createSettings = "INSERT INTO Settings (name, value)
 VALUES ('ID of Blog page', '0'),('ID of Home page', '0');";
 
-
-echo '<h3>Setup DB</h3>';
-echo createDB();
-
+require_once '../../config/config.php';
 require_once '../../includes/dbh.inc.php';
 
 echo '<h3>Setup Table "Users"</h3>';
@@ -75,7 +75,7 @@ try {
 echo '<h3>Setup Table "Comments"</h3>';
 
 try {
-    if ($conn->query($createComentsTable) === true) {
+    if ($conn->query($createCommentsTable) === true) {
         echo '<p  class="alert-success">Table "Comments" has been created.</p>';
     }
 } catch (Exception $e) {

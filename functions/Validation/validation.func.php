@@ -43,11 +43,9 @@ function emptyLoginInput($user, $password): bool
 function invalidEmail($email): bool
 {
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $invalid = true;
-    } else {
-        $invalid = false;
+        return true;
     }
-    return $invalid;
+    return false;
 }
 
 function invalidName($name, $lastname): bool
@@ -93,6 +91,7 @@ function userExist($conn, $user)
 
 function test_input($data): string
 {
+
     $data = trim($data);
     $data = stripslashes($data);
     return htmlspecialchars($data);

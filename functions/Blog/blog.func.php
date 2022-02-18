@@ -115,7 +115,7 @@ function getComments($conn, $postID, $limit, $offset, $countRows)
 {
     $id = (int) $postID;
     if (!$countRows) {
-        $commentsQuery = "SELECT Comments.content, Comments.timestamp, Users.display_name FROM Comments INNER JOIN Users ON Comments.author_id=Users.id WHERE post_id=? and status='active' ORDER by Comments.timestamp DESC LIMIT {$offset},{$limit}";
+        $commentsQuery = "SELECT Comments.content, Comments.timestamp, Users.display_name, Users.avatar FROM Comments INNER JOIN Users ON Comments.author_id=Users.id WHERE post_id=? and status='active' ORDER by Comments.timestamp DESC LIMIT {$offset},{$limit}";
         $stmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($stmt, $commentsQuery)) {
             header("location: /index.php?error=stmtfailure");

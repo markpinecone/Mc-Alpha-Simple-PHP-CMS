@@ -46,6 +46,12 @@
                             echo '<li class="nav-item ml-3">'.
                                 '<a class="nav-link" href="/admin/index.php"><i class="bi bi-gear-fill"></i></a>';
                         }
+                        if (isLoggedIn()) {
+                            echo '<li class="nav-item ml-3">'.
+                                '<a class="nav-link" href="/index.php?action=messages"><i class="bi bi-envelope"></i></a>'.
+                                '<li class="nav-item ml-3">'.
+                                '<a class="nav-link" href="/index.php?action=profile"><i class="bi bi-person-circle"></i></a>';
+                        }
                         echo '<li class="nav-item rounded-pill" style="background-color: crimson;">'.
                              '<a class="nav-link" href="/index.php?action=logout">Logout</a>';
                     }

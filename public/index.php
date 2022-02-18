@@ -26,6 +26,10 @@ if (isset($_GET["action"])) {
             require INCLUDE_DIR . '/post.inc.php';
             require VIEWS_DIR . '/post.view.php';
             break;
+        case("profile"):
+            include INCLUDE_DIR . '/profile.inc.php';
+            include VIEWS_DIR . '/profile.view.php';
+            break;
         case("home"):
             getContent($conn, getSetPage($conn, 'ID of Home page'));
             break;
