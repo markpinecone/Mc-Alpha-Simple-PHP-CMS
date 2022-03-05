@@ -20,6 +20,7 @@ require_once FUNCTIONS_DIR . '/Pages/pages.func.php';
 require_once FUNCTIONS_DIR . '/Table/table.func.php';
 require_once FUNCTIONS_DIR . '/User/user.func.php';
 require_once FUNCTIONS_DIR . '/Validation/validation.func.php';
+require_once FUNCTIONS_DIR . '/Message/message.func.php';
 // require_once FUNCTIONS_DIR . '/';
 
 

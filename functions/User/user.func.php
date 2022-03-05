@@ -99,3 +99,24 @@ function getAvatarImgName($conn, $id): string
     mysqli_stmt_close($stmt);
     return mysqli_fetch_array($stmtResult)["avatar"];
 }
+
+function getAllDisplayNames($conn): array|false
+{
+    $query = "SELECT id, display_name FROM Users";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $query)) {
+        header("location: /admin/index.php?action=users&edit={$id}&error=stmtfailure");
+        exit();
+    }
+    mysqli_stmt_execute($stmt);
+    $stmtResult = mysqli_stmt_get_result($stmt);
+    if (mysqli_num_rows($stmtResult) > 0) {
+        while ($row = mysqli_fetch_assoc($stmtResult)) {
+            $users[] = $row;
+        }
+        mysqli_stmt_close($stmt);
+        return $users;
+    } else {
+        return false;
+    }
+}

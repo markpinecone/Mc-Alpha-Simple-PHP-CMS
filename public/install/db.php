@@ -44,10 +44,21 @@ $createOptionsTable = "CREATE TABLE Settings (
                         id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY UNIQUE,
                         name VARCHAR(15) NOT NULL UNIQUE,
                         value INT(11) NOT NULL
-)";
+                        )";
+$createMessagesTable = "CREATE TABLE Messages (
+                        id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY UNIQUE,
+                        from_id INT(11) NOT NULL,
+                        to_id INT(11) NOT NULL,
+                        subject VARCHAR(30) NOT NULL DEFAULT 'Not specified.',
+                        message TEXT(600) NOT NULL,
+                        timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                        has_been_read BOOL NOT NULL DEFAULT FALSE,
+                        deleted_from BOOL NOT NULL DEFAULT FALSE,
+                        deleted_to BOOL NOT NULL DEFAULT FALSE
+                        )";
 
 $createSettings = "INSERT INTO Settings (name, value)
-VALUES ('ID of Blog page', '0'),('ID of Home page', '0');";
+                   VALUES ('ID of Blog page', '0'),('ID of Home page', '0');";
 
 require_once '../../config/config.php';
 require_once '../../includes/dbh.inc.php';
@@ -107,6 +118,18 @@ echo '<h3>Setup "Settings" entries</h3>';
 try {
     if ($conn->query($createSettings) === true) {
         echo '<p  class="alert-success">Initial Settings has been created.</p>';
+    }
+} catch (Exception $e) {
+    echo '<p class="alert-warning">Caught exception: ',  $e->getMessage(), "</p>\n";
+}
+
+echo '<br><br>';
+
+echo '<h3>Setup "Messages" table</h3>';
+
+try {
+    if ($conn->query($createMessagesTable) === true) {
+        echo '<p  class="alert-success">Table "Messages" has been created.</p>';
     }
 } catch (Exception $e) {
     echo '<p class="alert-warning">Caught exception: ',  $e->getMessage(), "</p>\n";

@@ -28,10 +28,18 @@ echo '<div class="mt-3 fw-bold h3">';
 echo 'Welcome'. ' ' . fetchData($conn,'name', $userid, 'users') . ' ' . fetchData($conn,'lastname', $userid, 'users'). '!';
 echo '</div>';
 ?>
-<div class="w-25">
-    <img class="img-fluid img-thumbnail rounded-circle" src="/static/avatars/<?php echo getAvatarImgName($conn, $userid); ?>">
+<div class="container ">
+    <div style="max-width:220px !important;">
+        <img class="img-fluid img-thumbnail" src="/static/avatars/<?php echo getAvatarImgName($conn, $userid); ?>">
+    </div>
+    <form class="w-50" method="post" action="" enctype="multipart/form-data">
+        <div class="form-group col-md-4 mt-3 mb-3">
+            <label class="form-label fw-bold mb-3" for="filename">Upload Avatar</label>
+            <input class="form-control btn btn-secondary mb-3" type="file" id="img" name="img">
+            <input class="btn btn-primary" type="submit" name="upload" value="Upload">
+        </div>
+    </form>
 </div>
-
 <div class="mt-3 container justify-content-between" id="form">
     <form class="float-start w-50" method="post" action="">
 
@@ -64,13 +72,6 @@ echo '</div>';
         echo '<button class="btn btn-primary" type="submit" value="update_profile" name="update_profile" class="">Change profile info.</button>';
 
         ?>
-    </form>
-    <form class="float-end w-50" method="post" action="" enctype="multipart/form-data">
-        <div class="form-group col-md-4 mt-3 mb-3">
-            <label class="form-label fw-bold mb-3" for="filename">Upload Avatar</label>
-            <input class="form-control btn btn-secondary mb-3" type="file" id="img" name="img">
-            <input class="btn btn-primary" type="submit" name="upload" value="Upload">
-        </div>
     </form>
 </div>
 

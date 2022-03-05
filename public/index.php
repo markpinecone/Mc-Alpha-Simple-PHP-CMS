@@ -30,6 +30,13 @@ if (isset($_GET["action"])) {
             include INCLUDE_DIR . '/profile.inc.php';
             include VIEWS_DIR . '/profile.view.php';
             break;
+        case("messages"):
+            include INCLUDE_DIR . '/messages.inc.php';
+            include VIEWS_DIR . '/messages.view.php';
+            break;
+//        case("read"):
+//            include VIEWS_DIR . '/msg/read.message.php';
+//            break;
         case("home"):
             getContent($conn, getSetPage($conn, 'ID of Home page'));
             break;
