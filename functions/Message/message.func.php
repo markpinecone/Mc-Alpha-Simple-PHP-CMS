@@ -100,3 +100,19 @@ function getSingleMessage($conn, $id): array | false
     mysqli_stmt_close($stmt);
     return false;
 }
+
+function countUnreadMessages($conn)
+{
+    $to_id = (int) $_SESSION["id"];
+    $sql = "SELECT COUNT(has_been_read) FROM Messages WHERE to_id={$to_id} AND has_been_read=0;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: /index.php?action=messages&error=stmtfailure");
+        exit();
+    }
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    mysqli_stmt_close($stmt);
+    return (int) mysqli_fetch_array($result)[0];
+
+}

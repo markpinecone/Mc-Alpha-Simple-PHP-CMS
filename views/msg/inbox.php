@@ -38,8 +38,7 @@ $id = (int) $_SESSION["id"];
                 echo $message["subject"];
                 echo "</div>";
                 echo '<div class="col">';
-                //echo $message["deleted_from"];
-                echo '<a href="/index.php?action=messages&type=inbox&msg='.$message["id"].'$delete=true"><i class="bi bi-trash-fill text-danger"></i></a>';
+                echo '<a href="/index.php?action=messages&type=inbox&msg='.$message["id"].'&delete=true"><i class="bi bi-trash-fill text-danger"></i></a>';
                 echo "</div>";
                 echo "</div>";
             }

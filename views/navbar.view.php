@@ -44,16 +44,20 @@
                     } else {
                         if (isAdmin()) {
                             echo '<li class="nav-item ml-3">'.
-                                '<a class="nav-link" href="/admin/index.php"><i class="bi bi-gear-fill"></i></a>';
+                                '<a class="nav-link" href="/admin/index.php"><i class="bi h3 bi-gear-fill"></i></a>';
                         }
                         if (isLoggedIn()) {
+
                             echo '<li class="nav-item ml-3">'.
-                                '<a class="nav-link" href="/index.php?action=messages"><i class="bi bi-envelope"></i></a>'.
+                                '<a class="nav-link" href="/index.php?action=messages"><i class="bi bi-envelope h3 position-relative"></i><span class="position-absolute top-10 start-10
+                                     translate-middle badge rounded-pill bg-danger">'.
+                                      countUnreadMessages($conn)
+                                      .'<span class="visually-hidden">unread messages</span></span></a>'.
                                 '<li class="nav-item ml-3">'.
-                                '<a class="nav-link" href="/index.php?action=profile"><i class="bi bi-person-circle"></i></a>';
+                                '<a class="nav-link" href="/index.php?action=profile"><i class="bi h3 bi-person-circle"></i></a>';
                         }
-                        echo '<li class="nav-item rounded-pill" style="background-color: crimson;">'.
-                             '<a class="nav-link" href="/index.php?action=logout">Logout</a>';
+                        echo '<li class="">'.
+                             '<a class="btn btn-danger mt-1" href="/index.php?action=logout">Logout</a>';
                     }
                     ?>
  
