@@ -1,9 +1,9 @@
 <?php
 if (isset($_POST["Send"])) {
     $sender = $_SESSION["id"];
-    $receiver = $_POST["receiver"];
-    $subject = $_POST["subject"];
-    $content = $_POST["content"];
+    $receiver = test_input($_POST["receiver"]);
+    $subject = test_input($_POST["subject"]);
+    $content = test_input($_POST["content"]);
 
     $sql = "INSERT INTO Messages (from_id, to_id, subject, message)
 	VALUES ('$sender', '$receiver', '$subject', '$content')";

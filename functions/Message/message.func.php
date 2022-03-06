@@ -2,7 +2,7 @@
 // I should be using prepared statements here
 function getSentMessages($conn, $id): array|false
 {
-    $query = "SELECT * FROM Messages WHERE from_id={$id} AND deleted_from = 0;";
+    $query = "SELECT * FROM Messages WHERE from_id={$id} AND deleted_from = 0 ORDER BY timestamp DESC;";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $query)) {
         header("location: /index.php?action=messages&error=stmtfailure");
@@ -25,7 +25,7 @@ function getSentMessages($conn, $id): array|false
 
 function getRecievedMessages($conn, $id): array|false
 {
-    $query = "SELECT * FROM Messages WHERE to_id={$id} AND deleted_to = 0;";
+    $query = "SELECT * FROM Messages WHERE to_id={$id} AND deleted_to = 0 ORDER BY timestamp DESC;";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $query)) {
         header("location: /index.php?action=messages&error=stmtfailure");

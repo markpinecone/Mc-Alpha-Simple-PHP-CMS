@@ -6,7 +6,7 @@ $id = (int) $_SESSION["id"];
 </h3>
 <div class="container">
     <div class="row fw-bold bg-dark text-light">
-        <div class="col">
+        <div class="col" style="max-width: 210px;">
             Date
         </div>
         <div class="col">
@@ -16,6 +16,9 @@ $id = (int) $_SESSION["id"];
             Subject
         </div>
         <div class="col">
+            Message
+        </div>
+        <div class="col" style="max-width: 70px;">
             Delete
         </div>
     </div>
@@ -28,7 +31,7 @@ $id = (int) $_SESSION["id"];
             } else {
                 echo '<div class="row" onclick="location.href='."'/index.php?action=messages&type=read&msg=".$message["id"]."'".'" style="cursor: pointer;">';
             }
-            echo '<div class="col">';
+            echo '<div class="col text-info" style="max-width: 210px;">';
             echo $message["timestamp"];
             echo '</div>';
             echo '<div class="col">';
@@ -38,6 +41,9 @@ $id = (int) $_SESSION["id"];
             echo $message["subject"];
             echo "</div>";
             echo '<div class="col">';
+            echo substr($message["message"], 0,20).'...';
+            echo "</div>";
+            echo '<div class="col" style="max-width: 70px;">';
             echo '<a href="/index.php?action=messages&type=sent&msg='.$message["id"].'&delete=true"><i class="bi bi-trash-fill text-danger"></i></a>';
             echo "</div>";
             echo "</div>";
