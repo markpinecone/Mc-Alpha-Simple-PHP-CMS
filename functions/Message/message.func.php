@@ -104,7 +104,7 @@ function getSingleMessage($conn, $id): array | false
 function countUnreadMessages($conn)
 {
     $to_id = (int) $_SESSION["id"];
-    $sql = "SELECT COUNT(has_been_read) FROM Messages WHERE to_id={$to_id} AND has_been_read=0;";
+    $sql = "SELECT COUNT(has_been_read) FROM Messages WHERE to_id={$to_id} AND has_been_read=0 AND deleted_to=0;";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: /index.php?action=messages&error=stmtfailure");

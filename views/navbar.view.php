@@ -15,7 +15,7 @@
             <!-- Navbar brand -->
             <a class="navbar-brand mt-2 mt-lg-0" href="#">
                 <img src="/static/img/htp.png" height="30" alt="CMS101"
-                    loading="lazy" />
+                    loading="lazy">
             </a>
             <!-- Left links -->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -49,12 +49,15 @@
                         if (isLoggedIn()) {
 
                             echo '<li class="nav-item ml-3">'.
-                                '<a class="nav-link" href="/index.php?action=messages"><i class="bi bi-envelope h3 position-relative"></i><span class="position-absolute top-10 start-10
+                                '<a class="nav-link" href="/index.php?action=messages"><i class="bi bi-envelope h3 position-relative"></i>';
+                            if(countUnreadMessages($conn) > 0) {
+                                echo '<span class="position-absolute top-10 start-10
                                      translate-middle badge rounded-pill bg-danger">'.
                                       countUnreadMessages($conn)
-                                      .'<span class="visually-hidden">unread messages</span></span></a>'.
-                                '<li class="nav-item ml-3">'.
-                                '<a class="nav-link" href="/index.php?action=profile"><i class="bi h3 bi-person-circle"></i></a>';
+                                      .'<span class="visually-hidden">unread messages</span></span></a>';
+                            }
+                        echo '<li class="nav-item ml-3">'.
+                        '<a class="nav-link" href="/index.php?action=profile"><i class="bi h3 bi-person-circle"></i></a>';
                         }
                         echo '<li class="">'.
                              '<a class="btn btn-danger mt-1" href="/index.php?action=logout">Logout</a>';

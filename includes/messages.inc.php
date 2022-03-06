@@ -25,14 +25,14 @@ if(isset($_GET["msg"]))
     $conn->query($sql);
 }
 
-if(isset($_GET["msg"]) && $_GET["delete"] && $_GET["type"] == 'inbox')
+if(isset($_GET["msg"]) && isset($_GET["delete"]) && $_GET["delete"] && $_GET["type"] == 'inbox')
 {
     $msg = (int) $_GET["msg"];
     $sql = "UPDATE Messages SET deleted_to=1 WHERE id={$msg};";
     $conn->query($sql);
 }
 
-if(isset($_GET["msg"]) && $_GET["delete"] && $_GET["type"] == 'sent')
+if(isset($_GET["msg"]) && isset($_GET["delete"]) && $_GET["delete"] && $_GET["type"] == 'sent')
 {
     $msg = (int) $_GET["msg"];
     $sql = "UPDATE Messages SET deleted_from=1 WHERE id={$msg};";
